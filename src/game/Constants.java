@@ -11,9 +11,12 @@ public interface Constants {
 	public static final int MAX_VELOCIDAD = 100;
 	public static final int MIN_VELOCIDAD = 25;
 	
-	public static final int MAX_EDAD = 40;
+	public static final int MAX_EDAD = 50;
 	public static final int MIN_EDAD = 10;
 	
-	// Agregar constantes de efectos entre atributos
+	public static final int TABLERO_SIZE_1 = 50;
+	public static final int TABLERO_SIZE_2 = 50;
 	
+	// Agregar constantes de efectos entre atributos
+	 
 }
