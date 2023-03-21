@@ -1,10 +1,9 @@
 package game;
 
-public class Juego {
+public class Juego implements Constants {
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-	}
-
+	// Se crea el mapa
+	// Se crean los alimentos y los microorganismos
+	// Inicia la simulacion
+	
 }

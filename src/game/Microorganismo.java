@@ -2,7 +2,8 @@ package game;
 
 public class Microorganismo implements Constants{
 
-	public boolean vivo = true;
+	public boolean isAlive = true;
+	
 	public int energia;
 	public int vision;
 	public int velocidad;
