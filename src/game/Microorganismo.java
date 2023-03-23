@@ -1,6 +1,6 @@
 package game;
 
-public class Microorganismo implements Constants{
+public class Microorganismo implements Constants, Mapeable {
 
 	public boolean isAlive = true;
 	
@@ -23,7 +23,7 @@ public class Microorganismo implements Constants{
 		this.edad = MIN_EDAD;
 		
 	}
-	
+	/*
 	public Microorganismo(int pEnergia, int pVision, int pVelocidad, int pEdad) {
 		
 		this.energia = pEnergia;
@@ -31,6 +31,6 @@ public class Microorganismo implements Constants{
 		this.velocidad = pVelocidad;
 		this.edad = pEdad;
 		
-	}
+	}*/
 	
 }

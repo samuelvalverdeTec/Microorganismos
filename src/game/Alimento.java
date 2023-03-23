@@ -1,6 +1,6 @@
 package game;
 
-public class Alimento {
+public class Alimento implements Mapeable{
 
 	public int energiaAl;
 	public int velocidadAl;

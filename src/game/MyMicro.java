@@ -1,7 +1,11 @@
 package game;
 
-public class MyMicroorganismo extends Microorganismo {
+public class MyMicro extends Microorganismo {
 
+	public MyMicro() {
+		
+	}
+	
 	public void mover() {
 		
 	}

@@ -17,6 +17,8 @@ public interface Constants {
 	public static final int TABLERO_SIZE_1 = 50;
 	public static final int TABLERO_SIZE_2 = 50;
 	
+	public static final int CANTIDAD_NPCS = 249;
+	
 	// Agregar constantes de efectos entre atributos
 	
 }
