@@ -1,8 +1,8 @@
 package game;
 
-public class MicroNpc extends Microorganismo {
+public class MicroNPC extends Microorganismo {
 
-	public MicroNpc() {
+	public MicroNPC() {
 		
 		int pEnergia = (int)(Math.random()*MAX_ENERGIA+MIN_ENERGIA);
 		int pVision = (int)(Math.random()*MAX_VISION+MIN_VISION);

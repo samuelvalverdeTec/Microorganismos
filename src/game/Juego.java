@@ -25,7 +25,7 @@ public class Juego implements Constants, Mapeable {
 		
 		microList.add(new MyMicro());
 		for(int i=1; i<CANTIDAD_NPCS; i++) {		// 250 microorganismos
-			microList.add(new MicroNpc());			// 750 alimentos
+			microList.add(new MicroNPC());			// 750 alimentos
 			for(int j=0;j<3;j++) {
 				aliList.add(new Alimento());
 			}
