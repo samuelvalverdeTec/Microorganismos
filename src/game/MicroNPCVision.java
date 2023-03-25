@@ -1,5 +1,5 @@
 package game;
 
-public class MicroNPCVision {
+public class MicroNPCVision extends MicroNPC{
 
 }

@@ -14,37 +14,74 @@ public class Juego implements Constants, Mapeable {
 	ArrayList<Microorganismo> microList = new ArrayList<Microorganismo>();
 	ArrayList<Alimento> aliList = new ArrayList<Alimento>();
 	
+	
 	public void play() {
 		
 		crearMapeables();
-		//cargarMapeables(mapa, microList, aliList);
+		cargarMapeables();
 		
 	}
 	
 	public void crearMapeables() {
 		
-		microList.add(new MyMicro());
-		for(int i=1; i<CANTIDAD_NPCS; i++) {		// 250 microorganismos
-			microList.add(new MicroNPC());			// 750 alimentos
-			for(int j=0;j<3;j++) {
-				aliList.add(new Alimento());
-			}
+		Microorganismo MyMicroorganismo = new MyMicro();
+		MyMicroorganismo.numMicro = 1;
+		microList.add(MyMicroorganismo);
+		int contMicro = 2;
+		Microorganismo MicroorganismoNPC = null;
+		for(int i=0; i<(CANTIDAD_NPCS/2); i++) {		// 250 microorganismos
+			MicroorganismoNPC = new MicroNPCVision();
+			MicroorganismoNPC.numMicro = contMicro;
+			microList.add(MicroorganismoNPC);			// 750 alimentos
+			contMicro++;
+			
+			aliList.add(new AlimentoEnergia());
+			aliList.add(new AlimentoVision());
+			aliList.add(new AlimentoVelocidad());
+				
+		} 
+		
+		for(int i=0; i<(CANTIDAD_NPCS/2); i++) {		// 250 microorganismos
+			MicroorganismoNPC = new MicroNPCVelocidad();
+			MicroorganismoNPC.numMicro = contMicro;
+			microList.add(MicroorganismoNPC);			// 750 alimentos
+			contMicro++;
+			
+			aliList.add(new AlimentoEnergia());
+			aliList.add(new AlimentoVision());
+			aliList.add(new AlimentoVelocidad());
+			
 		} 
 	}
 	
-	public void cargarMapeables(Mapeable mapa, ArrayList<Microorganismo> microList, ArrayList<Alimento> aliList) {
-		
-		Random rnX = new Random();
-		Random rnY = new Random();
+	public void cargarMapeables() {
 		
 		for(int i=0;i<microList.size();i++) {
-			
-			int coordX = rnX.nextInt(TABLERO_SIZE_1 - TABLERO_SIZE_2 + 1) + TABLERO_SIZE_2;
-			int coordY = rnX.nextInt(TABLERO_SIZE_1 - TABLERO_SIZE_2 + 1) + TABLERO_SIZE_2;
-			
-			//mapa[coordX][coordY] = microList.get(i);
-			
+			boolean encontroPos = false;
+			while(encontroPos == false) {
+				int pPosX = (int)(Math.random()*(TABLERO_SIZE_1-1)+0);
+				int pPosY = (int)(Math.random()*(TABLERO_SIZE_2-1)+0);
+				if(mapa[pPosX][pPosY] == null) {
+					microList.get(i).setPosicion(pPosX, pPosY);
+					mapa[pPosX][pPosY] = microList.get(i);
+					encontroPos = true;
+				}
+			}			
 		}
+		
+		for(int i=0;i<aliList.size();i++) {
+			boolean encontroPos = false;
+			while(encontroPos == false) {
+				int pPosX = (int)(Math.random()*(TABLERO_SIZE_1-1)+0);
+				int pPosY = (int)(Math.random()*(TABLERO_SIZE_2-1)+0);
+				if(mapa[pPosX][pPosY] == null) {
+					aliList.get(i).setPosicion(pPosX, pPosY);
+					mapa[pPosX][pPosY] = aliList.get(i);
+					encontroPos = true;
+				}
+			}			
+		}
+		
 	}
 	
 }

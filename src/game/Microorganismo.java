@@ -1,6 +1,8 @@
 package game;
 
 public class Microorganismo implements Constants, Mapeable {
+	
+	public int numMicro;
 
 	public boolean isAlive = true;
 	
@@ -17,6 +19,11 @@ public class Microorganismo implements Constants, Mapeable {
 	
 	public Microorganismo() {
 		
+	}
+	
+	public void setPosicion(int pPosX, int pPosY) {
+		this.posX = pPosX;
+		this.posY = pPosY;
 	}
 	
 }
