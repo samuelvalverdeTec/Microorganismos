@@ -26,4 +26,18 @@ public class Microorganismo implements Constants, Mapeable {
 		this.posY = pPosY;
 	}
 	
+	public void comerAlimento(Alimento alimento) {
+
+		this.energia += alimento.energiaAl;
+		
+	}
+	
+	public void comerMicro(Microorganismo enemigo) {
+		
+		this.energia += (enemigo.energia)/2;
+		this.vision += (enemigo.vision)/2;
+		this.velocidad += (enemigo.velocidad)/2;
+		
+	}
+	
 }

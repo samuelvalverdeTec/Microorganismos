@@ -22,14 +22,6 @@ public class MyMicro extends Microorganismo implements KeyListener {
 		
 	}
 	
-	public void comer(Alimento alimento) {
-		
-		this.energia += alimento.energiaAl;
-		
-	}
-	
-	
-	
 	
 	@Override
 	public void keyTyped(KeyEvent e) {
