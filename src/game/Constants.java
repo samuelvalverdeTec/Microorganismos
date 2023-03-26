@@ -3,12 +3,12 @@ package game;
 public interface Constants {
 
 	public static final int MAX_ENERGIA = 150;
-	public static final int MIN_ENERGIA = 75;
+	public static final int MIN_ENERGIA = 1;
 	
 	public static final int MAX_VISION = 6;
 	public static final int MIN_VISION = 1;
 	
-	public static final int MAX_VELOCIDAD = 4;
+	public static final int MAX_VELOCIDAD = 3;
 	public static final int MIN_VELOCIDAD = 1;
 	
 	public static final int MAX_EDAD = 50;
