@@ -2,6 +2,8 @@ package game;
 
 public class MicroNPC extends Microorganismo {
 
+	int direccion, casillas;
+	
 	public MicroNPC() {
 		
 		int pEnergia = (int)(Math.random()*MAX_ENERGIA+MIN_ENERGIA);
@@ -17,6 +19,12 @@ public class MicroNPC extends Microorganismo {
 		
 		this.posX = 0;
 		this.posY = 0;
+		
+	}
+	
+	public void move(Mapeable[][] mapa ,int direccion, int cantidadCasillas) {
+		
+		
 		
 	}
 	

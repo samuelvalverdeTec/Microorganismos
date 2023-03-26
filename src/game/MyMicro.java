@@ -18,10 +18,11 @@ public class MyMicro extends Microorganismo implements KeyListener {
 		
 	}
 	
-	public void mover() {
+	public void move() {
+		
+		
 		
 	}
-	
 	
 	@Override
 	public void keyTyped(KeyEvent e) {
