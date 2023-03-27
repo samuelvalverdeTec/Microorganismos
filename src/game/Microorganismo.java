@@ -36,10 +36,10 @@ public class Microorganismo implements Constants, Mapeable {
 	
 	public void pelear(Microorganismo enemigo) {
 		
-		if(energia > enemigo.getEnergia()) {
+		if(energia > enemigo.energia) {
 			this.comerMicro(enemigo);
 		}
-		else if(energia < enemigo.getEnergia()) {
+		else if(energia < enemigo.energia) {
 			enemigo.comerMicro(this);
 		} 
 		else {
@@ -61,10 +61,10 @@ public class Microorganismo implements Constants, Mapeable {
 
 	public void compararEnergia(Microorganismo enemigo) {
 	
-		if(energia > enemigo.getEnergia()) {
+		if(energia > enemigo.energia) {
 			this.comerMicro(enemigo);
 		}
-		else if(energia < enemigo.getEnergia()) {
+		else if(energia < enemigo.energia) {
 			enemigo.comerMicro(this);
 		} 
 		else {
@@ -74,10 +74,10 @@ public class Microorganismo implements Constants, Mapeable {
 	
 	public void compararVelocidad(Microorganismo enemigo) {
 		
-		if(velocidad > enemigo.getVelocidad()) {
+		if(velocidad > enemigo.velocidad) {
 			this.comerMicro(enemigo);
 		}
-		else if(velocidad < enemigo.getVelocidad()) {
+		else if(velocidad < enemigo.velocidad) {
 			enemigo.comerMicro(this);
 		} 
 		else {
@@ -88,10 +88,10 @@ public class Microorganismo implements Constants, Mapeable {
 	
 	public void compararEdad(Microorganismo enemigo) {
 		
-		if(edad > enemigo.getEdad()) {
+		if(edad > enemigo.edad) {
 			this.comerMicro(enemigo);
 		}
-		else if(edad < enemigo.getEdad()) {
+		else if(edad < enemigo.edad) {
 			enemigo.comerMicro(this);
 		} 
 		else {
@@ -105,38 +105,6 @@ public class Microorganismo implements Constants, Mapeable {
 			}
 		}
 		
-	}
-	
-	public int getEnergia() {
-		return energia;
-	}
-
-	public void setEnergia(int energia) {
-		this.energia = energia;
-	}
-
-	public int getVision() {
-		return vision;
-	}
-
-	public void setVision(int vision) {
-		this.vision = vision;
-	}
-
-	public int getVelocidad() {
-		return velocidad;
-	}
-
-	public void setVelocidad(int velocidad) {
-		this.velocidad = velocidad;
-	}
-
-	public int getEdad() {
-		return edad;
-	}
-
-	public void setEdad(int edad) {
-		this.edad = edad;
 	}
 	
 }

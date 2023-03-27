@@ -22,7 +22,7 @@ public class MicroNPC extends Microorganismo {
 		
 	}
 	
-	public void move(Mapeable[][] mapa ,int direccion, int cantidadCasillas) {
+	public void move(Mapeable[][] mapa ,int direccion/*, int cantidadCasillas*/) {
 		
 		
 		
