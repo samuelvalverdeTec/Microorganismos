@@ -26,6 +26,9 @@ public abstract class MicroNPC extends Microorganismo {
 	
 	//public abstract ORIENTATION revisarEntorno(Mapeable[][] mapa);
 	
+	public abstract boolean esNPCVision();
+	
+	
 	public ORIENTATION revisarEntorno(Mapeable[][] mapa) {
 		
 		ORIENTATION dirMover = null;
@@ -99,33 +102,65 @@ public abstract class MicroNPC extends Microorganismo {
 					alimentoEncontrado = alimentosEncontrados.get(i);
 					PosXAlimentoEncontrado = alimentoEncontrado.posX;
 					PosYAlimentoEncontrado = alimentoEncontrado.posY;
-					if ( (j == 0 && alimentoEncontrado.esAlimentoEnergia()) || 
-						 (j == 1 && alimentoEncontrado.esAlimentoVision()) ||
-						 (j == 2 && alimentoEncontrado.esAlimentoVelocidad()) ) {
-						dirMover = this.getDirAlcanzable(alimentoEncontrado);
-						/*if((PosXAlimentoEncontrado < this.posX)&&(PosYAlimentoEncontrado == this.posY)) {
-							alimentoAlcanzable = true;
-							dirMover = ORIENTATION.WEST;
-						}
-						else if((PosXAlimentoEncontrado > this.posX)&&(PosYAlimentoEncontrado == this.posY)) {
-							alimentoAlcanzable = true;
-							dirMover = ORIENTATION.EAST;
-						}
-						else if((PosXAlimentoEncontrado == this.posX)&&(PosYAlimentoEncontrado < this.posY)) {
-							alimentoAlcanzable = true;
-							dirMover = ORIENTATION.NORTH;
-						}
-						else if((PosXAlimentoEncontrado == this.posX)&&(PosYAlimentoEncontrado > this.posY)) {
-							alimentoAlcanzable = true;
-							dirMover = ORIENTATION.SOUTH;
-						}*/		
-						if(/*alimentoAlcanzable*/ dirMover != null && direccionesValidas[dirMover.getValue()]) {
-							if((mejorAlimentoEncontrado == null)||(alimentoEncontrado.atributo > mejorAlimentoEncontrado.atributo)) {
-								mejorAlimentoEncontrado = alimentoEncontrado;
-								MoverDirFinal = dirMover;
+					if(this.esNPCVision()) {
+						if ( (j == 0 && alimentoEncontrado.esAlimentoEnergia()) || 
+							 (j == 1 && alimentoEncontrado.esAlimentoVision()) ||
+							 (j == 2 && alimentoEncontrado.esAlimentoVelocidad()) ) {
+							dirMover = this.getDirAlcanzable(alimentoEncontrado);
+							/*if((PosXAlimentoEncontrado < this.posX)&&(PosYAlimentoEncontrado == this.posY)) {
+								alimentoAlcanzable = true;
+								dirMover = ORIENTATION.WEST;
+							}
+							else if((PosXAlimentoEncontrado > this.posX)&&(PosYAlimentoEncontrado == this.posY)) {
+								alimentoAlcanzable = true;
+								dirMover = ORIENTATION.EAST;
+							}
+							else if((PosXAlimentoEncontrado == this.posX)&&(PosYAlimentoEncontrado < this.posY)) {
+								alimentoAlcanzable = true;
+								dirMover = ORIENTATION.NORTH;
+							}
+							else if((PosXAlimentoEncontrado == this.posX)&&(PosYAlimentoEncontrado > this.posY)) {
+								alimentoAlcanzable = true;
+								dirMover = ORIENTATION.SOUTH;
+							}*/		
+							if(/*alimentoAlcanzable*/ dirMover != null && direccionesValidas[dirMover.getValue()]) {
+								if((mejorAlimentoEncontrado == null)||(alimentoEncontrado.atributo > mejorAlimentoEncontrado.atributo)) {
+									mejorAlimentoEncontrado = alimentoEncontrado;
+									MoverDirFinal = dirMover;
+								}
 							}
 						}
 					}
+					else {
+						if ( (j == 0 && alimentoEncontrado.esAlimentoEnergia()) || 
+							 (j == 1 && alimentoEncontrado.esAlimentoVelocidad()) ||
+							 (j == 2 && alimentoEncontrado.esAlimentoVision()) ) {
+							dirMover = this.getDirAlcanzable(alimentoEncontrado);
+							/*if((PosXAlimentoEncontrado < this.posX)&&(PosYAlimentoEncontrado == this.posY)) {
+								alimentoAlcanzable = true;
+								dirMover = ORIENTATION.WEST;
+							}
+							else if((PosXAlimentoEncontrado > this.posX)&&(PosYAlimentoEncontrado == this.posY)) {
+								alimentoAlcanzable = true;
+								dirMover = ORIENTATION.EAST;
+							}
+							else if((PosXAlimentoEncontrado == this.posX)&&(PosYAlimentoEncontrado < this.posY)) {
+								alimentoAlcanzable = true;
+								dirMover = ORIENTATION.NORTH;
+							}
+							else if((PosXAlimentoEncontrado == this.posX)&&(PosYAlimentoEncontrado > this.posY)) {
+								alimentoAlcanzable = true;
+								dirMover = ORIENTATION.SOUTH;
+							}*/		
+							if(/*alimentoAlcanzable*/ dirMover != null && direccionesValidas[dirMover.getValue()]) {
+								if((mejorAlimentoEncontrado == null)||(alimentoEncontrado.atributo > mejorAlimentoEncontrado.atributo)) {
+									mejorAlimentoEncontrado = alimentoEncontrado;
+									MoverDirFinal = dirMover;
+								}
+							}
+						}
+					}
+					
 				}
 			}
 		}
@@ -137,53 +172,105 @@ public abstract class MicroNPC extends Microorganismo {
 					alimentoEncontrado = alimentosEncontrados.get(i);
 					PosXAlimentoEncontrado = alimentoEncontrado.posX;
 					PosYAlimentoEncontrado = alimentoEncontrado.posY;
-					if ( (j == 0 && alimentoEncontrado.esAlimentoEnergia()) || 
-						 (j == 1 && alimentoEncontrado.esAlimentoVision()) ||
-						 (j == 2 && alimentoEncontrado.esAlimentoVelocidad()) ){
-						dirMover = this.getDirAlcanzable(alimentoEncontrado);
-						/*if((PosXAlimentoEncontrado < this.posX)&&(PosYAlimentoEncontrado == this.posY)) {
-							alimentoAlcanzable = true;
-						}
-						else if((PosXAlimentoEncontrado > this.posX)&&(PosYAlimentoEncontrado == this.posY)) {
-							alimentoAlcanzable = true;
-						}
-						else if((PosXAlimentoEncontrado == this.posX)&&(PosYAlimentoEncontrado < this.posY)) {
-							alimentoAlcanzable = true;
-						}
-						else if((PosXAlimentoEncontrado == this.posX)&&(PosYAlimentoEncontrado > this.posY)) {
-							alimentoAlcanzable = true;
-						}*/
-						if(/*!alimentoAlcanzable*/ dirMover == null) {
-							if((PosXAlimentoEncontrado < this.posX)&&(PosYAlimentoEncontrado < this.posY)&&(direccionesValidas[ORIENTATION.NORTH.getValue()])) {
-								dirMover = ORIENTATION.NORTH;
+					if(this.esNPCVision()) {
+						if ( (j == 0 && alimentoEncontrado.esAlimentoEnergia()) || 
+							 (j == 1 && alimentoEncontrado.esAlimentoVision()) ||
+							 (j == 2 && alimentoEncontrado.esAlimentoVelocidad()) ){
+							dirMover = this.getDirAlcanzable(alimentoEncontrado);
+							/*if((PosXAlimentoEncontrado < this.posX)&&(PosYAlimentoEncontrado == this.posY)) {
+								alimentoAlcanzable = true;
 							}
-							else if((PosXAlimentoEncontrado < this.posX)&&(PosYAlimentoEncontrado < this.posY)&&(direccionesValidas[ORIENTATION.WEST.getValue()])) {
-								dirMover = ORIENTATION.WEST;
+							else if((PosXAlimentoEncontrado > this.posX)&&(PosYAlimentoEncontrado == this.posY)) {
+								alimentoAlcanzable = true;
 							}
-							else if((PosXAlimentoEncontrado > this.posX)&&(PosYAlimentoEncontrado < this.posY)&&(direccionesValidas[ORIENTATION.NORTH.getValue()])) {
-								dirMover = ORIENTATION.NORTH;
+							else if((PosXAlimentoEncontrado == this.posX)&&(PosYAlimentoEncontrado < this.posY)) {
+								alimentoAlcanzable = true;
 							}
-							else if((PosXAlimentoEncontrado > this.posX)&&(PosYAlimentoEncontrado < this.posY)&&(direccionesValidas[ORIENTATION.EAST.getValue()])) {
-								dirMover = ORIENTATION.EAST;
-							}
-							else if((PosXAlimentoEncontrado < this.posX)&&(PosYAlimentoEncontrado > this.posY)&&(direccionesValidas[ORIENTATION.SOUTH.getValue()])) {
-								dirMover = ORIENTATION.SOUTH;
-							}
-							else if((PosXAlimentoEncontrado < this.posX)&&(PosYAlimentoEncontrado > this.posY)&&(direccionesValidas[ORIENTATION.WEST.getValue()])) {
-								dirMover = ORIENTATION.WEST;
-							}
-							else if((PosXAlimentoEncontrado > this.posX)&&(PosYAlimentoEncontrado > this.posY)&&(direccionesValidas[ORIENTATION.SOUTH.getValue()])) {
-								dirMover = ORIENTATION.SOUTH;
-							}
-							else if((PosXAlimentoEncontrado > this.posX)&&(PosYAlimentoEncontrado > this.posY)&&(direccionesValidas[ORIENTATION.EAST.getValue()])) {
-								dirMover = ORIENTATION.EAST;
-							}
-							if((mejorAlimentoEncontrado == null)||(alimentoEncontrado.atributo > mejorAlimentoEncontrado.atributo)) {
-								mejorAlimentoEncontrado = alimentoEncontrado;
-								MoverDirFinal = dirMover;
+							else if((PosXAlimentoEncontrado == this.posX)&&(PosYAlimentoEncontrado > this.posY)) {
+								alimentoAlcanzable = true;
+							}*/
+							if(/*!alimentoAlcanzable*/ dirMover == null) {
+								if((PosXAlimentoEncontrado < this.posX)&&(PosYAlimentoEncontrado < this.posY)&&(direccionesValidas[ORIENTATION.NORTH.getValue()])) {
+									dirMover = ORIENTATION.NORTH;
+								}
+								else if((PosXAlimentoEncontrado < this.posX)&&(PosYAlimentoEncontrado < this.posY)&&(direccionesValidas[ORIENTATION.WEST.getValue()])) {
+									dirMover = ORIENTATION.WEST;
+								}
+								else if((PosXAlimentoEncontrado > this.posX)&&(PosYAlimentoEncontrado < this.posY)&&(direccionesValidas[ORIENTATION.NORTH.getValue()])) {
+									dirMover = ORIENTATION.NORTH;
+								}
+								else if((PosXAlimentoEncontrado > this.posX)&&(PosYAlimentoEncontrado < this.posY)&&(direccionesValidas[ORIENTATION.EAST.getValue()])) {
+									dirMover = ORIENTATION.EAST;
+								}
+								else if((PosXAlimentoEncontrado < this.posX)&&(PosYAlimentoEncontrado > this.posY)&&(direccionesValidas[ORIENTATION.SOUTH.getValue()])) {
+									dirMover = ORIENTATION.SOUTH;
+								}
+								else if((PosXAlimentoEncontrado < this.posX)&&(PosYAlimentoEncontrado > this.posY)&&(direccionesValidas[ORIENTATION.WEST.getValue()])) {
+									dirMover = ORIENTATION.WEST;
+								}
+								else if((PosXAlimentoEncontrado > this.posX)&&(PosYAlimentoEncontrado > this.posY)&&(direccionesValidas[ORIENTATION.SOUTH.getValue()])) {
+									dirMover = ORIENTATION.SOUTH;
+								}
+								else if((PosXAlimentoEncontrado > this.posX)&&(PosYAlimentoEncontrado > this.posY)&&(direccionesValidas[ORIENTATION.EAST.getValue()])) {
+									dirMover = ORIENTATION.EAST;
+								}
+								if((mejorAlimentoEncontrado == null)||(alimentoEncontrado.atributo > mejorAlimentoEncontrado.atributo)) {
+									mejorAlimentoEncontrado = alimentoEncontrado;
+									MoverDirFinal = dirMover;
+								}
 							}
 						}
 					}
+					else {
+						if ( (j == 0 && alimentoEncontrado.esAlimentoEnergia()) || 
+							 (j == 1 && alimentoEncontrado.esAlimentoVelocidad()) ||
+							 (j == 2 && alimentoEncontrado.esAlimentoVision()) ){
+							dirMover = this.getDirAlcanzable(alimentoEncontrado);
+							/*if((PosXAlimentoEncontrado < this.posX)&&(PosYAlimentoEncontrado == this.posY)) {
+								alimentoAlcanzable = true;
+							}
+							else if((PosXAlimentoEncontrado > this.posX)&&(PosYAlimentoEncontrado == this.posY)) {
+								alimentoAlcanzable = true;
+							}
+							else if((PosXAlimentoEncontrado == this.posX)&&(PosYAlimentoEncontrado < this.posY)) {
+								alimentoAlcanzable = true;
+							}
+							else if((PosXAlimentoEncontrado == this.posX)&&(PosYAlimentoEncontrado > this.posY)) {
+								alimentoAlcanzable = true;
+							}*/
+							if(/*!alimentoAlcanzable*/ dirMover == null) {
+								if((PosXAlimentoEncontrado < this.posX)&&(PosYAlimentoEncontrado < this.posY)&&(direccionesValidas[ORIENTATION.NORTH.getValue()])) {
+									dirMover = ORIENTATION.NORTH;
+								}
+								else if((PosXAlimentoEncontrado < this.posX)&&(PosYAlimentoEncontrado < this.posY)&&(direccionesValidas[ORIENTATION.WEST.getValue()])) {
+									dirMover = ORIENTATION.WEST;
+								}
+								else if((PosXAlimentoEncontrado > this.posX)&&(PosYAlimentoEncontrado < this.posY)&&(direccionesValidas[ORIENTATION.NORTH.getValue()])) {
+									dirMover = ORIENTATION.NORTH;
+								}
+								else if((PosXAlimentoEncontrado > this.posX)&&(PosYAlimentoEncontrado < this.posY)&&(direccionesValidas[ORIENTATION.EAST.getValue()])) {
+									dirMover = ORIENTATION.EAST;
+								}
+								else if((PosXAlimentoEncontrado < this.posX)&&(PosYAlimentoEncontrado > this.posY)&&(direccionesValidas[ORIENTATION.SOUTH.getValue()])) {
+									dirMover = ORIENTATION.SOUTH;
+								}
+								else if((PosXAlimentoEncontrado < this.posX)&&(PosYAlimentoEncontrado > this.posY)&&(direccionesValidas[ORIENTATION.WEST.getValue()])) {
+									dirMover = ORIENTATION.WEST;
+								}
+								else if((PosXAlimentoEncontrado > this.posX)&&(PosYAlimentoEncontrado > this.posY)&&(direccionesValidas[ORIENTATION.SOUTH.getValue()])) {
+									dirMover = ORIENTATION.SOUTH;
+								}
+								else if((PosXAlimentoEncontrado > this.posX)&&(PosYAlimentoEncontrado > this.posY)&&(direccionesValidas[ORIENTATION.EAST.getValue()])) {
+									dirMover = ORIENTATION.EAST;
+								}
+								if((mejorAlimentoEncontrado == null)||(alimentoEncontrado.atributo > mejorAlimentoEncontrado.atributo)) {
+									mejorAlimentoEncontrado = alimentoEncontrado;
+									MoverDirFinal = dirMover;
+								}
+							}
+						}
+					}
+					
 				}
 			}
 		}
@@ -225,8 +312,66 @@ public abstract class MicroNPC extends Microorganismo {
 	}
 	
 	
-	public void move(Mapeable[][] mapa ,int direccion/*, int cantidadCasillas*/) {
-	
+	public void move(Mapeable[][] mapa, ORIENTATION direccion/*, int cantidadCasillas*/) {
+		int posXVieja = this.posX;
+		int posYVieja = this.posY;
+		int posXNueva = this.posX;
+		int posYNueva = this.posY;
+		
+		if(direccion == ORIENTATION.NORTH) {
+			//this.posY = this.posY - this.velocidad;
+			for(posYNueva = posYVieja-1; posYNueva >= posYVieja-this.velocidad; posYNueva--) {
+				if(mapa[posXNueva][posYNueva] != null) {
+					this.revisarPosicion(mapa[posXNueva][posYNueva]);
+					break;
+				}
+			}
+			if(posYNueva < posYVieja-this.velocidad) {
+				posYNueva = posYNueva +1;
+			}
+		}
+		else if(direccion == ORIENTATION.SOUTH) {
+			//this.posY = this.posY + this.velocidad;
+			for(posYNueva = posYVieja+1; posYNueva <= posYVieja+this.velocidad; posYNueva++) {
+				if(mapa[posXNueva][posYNueva] != null) {
+					this.revisarPosicion(mapa[posXNueva][posYNueva]);
+					break;
+				}
+			}
+			if(posYNueva > posYVieja+this.velocidad) {
+				posYNueva = posYNueva -1;
+			}
+		}
+		else if(direccion == ORIENTATION.EAST) {
+			//this.posX = this.posX + this.velocidad;
+			for(posXNueva = posXVieja+1; posXNueva <= posXVieja+this.velocidad; posXNueva++) {
+				if(mapa[posXNueva][posYNueva] != null) {
+					this.revisarPosicion(mapa[posXNueva][posYNueva]);
+					break;
+				}
+			}
+			if(posXNueva > posXVieja+this.velocidad) {
+				posXNueva = posXNueva -1;
+			}
+		}
+		else if(direccion == ORIENTATION.WEST){
+			//this.posX = this.posX - this.velocidad;
+			for(posXNueva = posXVieja-1; posXNueva >= posXVieja-this.velocidad; posXNueva--) {
+				if(mapa[posXNueva][posYNueva] != null) {
+					this.revisarPosicion(mapa[posXNueva][posYNueva]);
+					break;
+				}
+			}
+			if(posXNueva < posXVieja-this.velocidad) {
+				posXNueva = posXNueva +1;
+			}
+		}
+		
+		this.setPosicion(posXNueva, posYNueva);
+		//int posXNueva = this.posX;
+		//int posYNueva = this.posY;
+		mapa[posXVieja][posYVieja] = null;
+		mapa[posXNueva][posYNueva] = this;
 		
 	}
 	

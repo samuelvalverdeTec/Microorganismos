@@ -19,13 +19,13 @@ public class Microorganismo implements Constants, Mapeable {
 		this.posY = pPosY;
 	}
 	
-	public void comerAlimento(Alimento alimento) {
+	public void comer(Alimento alimento) {
 		
 		alimento.consumido(this);
 		alimento.consumido = true;
 	}
 	
-	public void comerMicro(Microorganismo enemigo) {
+	public void comer(Microorganismo enemigo) {
 		
 		this.energia += (enemigo.energia)/2;
 		this.vision += (enemigo.vision)/2;
@@ -33,6 +33,17 @@ public class Microorganismo implements Constants, Mapeable {
 		enemigo.isAlive = false;
 		
 	}
+	
+
+	public void revisarPosicion(Mapeable objeto) {
+		if(objeto.esAlimento()) {
+			this.comer((Alimento)objeto);
+		}
+		else {
+			this.pelear((Microorganismo)objeto);
+		}
+	}
+	
 	
 	public void pelear(Microorganismo enemigo) {
 		
@@ -61,10 +72,10 @@ public class Microorganismo implements Constants, Mapeable {
 	public void compararEnergia(Microorganismo enemigo) {
 	
 		if(energia > enemigo.energia) {
-			this.comerMicro(enemigo);
+			this.comer(enemigo);
 		}
 		else if(energia < enemigo.energia) {
-			enemigo.comerMicro(this);
+			enemigo.comer(this);
 		} 
 		else {
 			this.compararVelocidad(enemigo);
@@ -74,10 +85,10 @@ public class Microorganismo implements Constants, Mapeable {
 	public void compararVelocidad(Microorganismo enemigo) {
 		
 		if(velocidad > enemigo.velocidad) {
-			this.comerMicro(enemigo);
+			this.comer(enemigo);
 		}
 		else if(velocidad < enemigo.velocidad) {
-			enemigo.comerMicro(this);
+			enemigo.comer(this);
 		} 
 		else {
 			this.compararEdad(enemigo);
@@ -88,19 +99,19 @@ public class Microorganismo implements Constants, Mapeable {
 	public void compararEdad(Microorganismo enemigo) {
 		
 		if(edad > enemigo.edad) {
-			this.comerMicro(enemigo);
+			this.comer(enemigo);
 		}
 		else if(edad < enemigo.edad) {
-			enemigo.comerMicro(this);
+			enemigo.comer(this);
 		} 
 		else {
 			// Random entre 1 y 2 para decidir el ganador
 			int tmp = (int) ( Math.random() * 2 + 1);
 			if(tmp == 1) {
-				this.comerMicro(enemigo);
+				this.comer(enemigo);
 			} 
 			else {
-				enemigo.comerMicro(this);
+				enemigo.comer(this);
 			}
 		}
 		
