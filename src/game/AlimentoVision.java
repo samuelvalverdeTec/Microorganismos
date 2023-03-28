@@ -28,4 +28,15 @@ public class AlimentoVision extends Alimento {
 		
 	}
 	
+	
+	public boolean esAlimentoEnergia() {
+		return false;
+	}
+	public boolean esAlimentoVelocidad() {
+		return false;
+	}
+	public boolean esAlimentoVision() {
+		return true;
+	}
+	
 }

@@ -2,7 +2,7 @@ package game;
 
 import java.util.ArrayList;
 
-public class Juego implements Constants, Mapeable {
+public class Juego implements Constants {
 
 	// Se crea el mapa
 	// Se crean los alimentos y los microorganismos
@@ -81,5 +81,6 @@ public class Juego implements Constants, Mapeable {
 		}
 		
 	}
+
 	
 }

@@ -34,4 +34,15 @@ public abstract class Alimento implements Constants, Mapeable{
 	public boolean esAlimento() {
 		return true;
 	}
+	
+	public abstract boolean esAlimentoEnergia();
+	public abstract boolean esAlimentoVelocidad();
+	public abstract boolean esAlimentoVision();
+	
+	public int getX() {
+		return this.posX;
+	}
+	public int getY() {
+		return this.posY;
+	}
 }

@@ -36,18 +36,17 @@ public class Microorganismo implements Constants, Mapeable {
 	
 	public void pelear(Microorganismo enemigo) {
 		
-		if(energia > enemigo.energia) {
-			this.comerMicro(enemigo);
-		}
-		else if(energia < enemigo.energia) {
-			enemigo.comerMicro(this);
-		} 
-		else {
-			
-			
-			
-		}
+		compararEnergia(enemigo);
 		
+	}
+	
+	
+	public boolean compararMicros(Microorganismo enemigo) {
+		boolean atacable = false;
+		if(this.energia > enemigo.energia) {
+			atacable = true;
+		}
+		return atacable;
 	}
 	
 	public boolean agotado() {
@@ -109,6 +108,30 @@ public class Microorganismo implements Constants, Mapeable {
 	
 	public boolean esAlimento() {
 		return false;
+	}
+	
+	public int getX() {
+		return this.posX;
+	}
+	public int getY() {
+		return this.posY;
+	}
+	
+	public ORIENTATION getDirAlcanzable(Mapeable objeto) {
+		ORIENTATION dirMover = null;
+		if((objeto.getX() < this.posX)&&(objeto.getY() == this.posY)) {
+			dirMover = ORIENTATION.WEST;
+		}
+		else if((objeto.getX() > this.posX)&&(objeto.getY() == this.posY)) {
+			dirMover = ORIENTATION.EAST;
+		}
+		else if((objeto.getX() == this.posX)&&(objeto.getY() < this.posY)) {
+			dirMover = ORIENTATION.NORTH;
+		}
+		else if((objeto.getX() == this.posX)&&(objeto.getY() > this.posY)) {
+			dirMover = ORIENTATION.SOUTH;
+		}
+		return dirMover;
 	}
 	
 }

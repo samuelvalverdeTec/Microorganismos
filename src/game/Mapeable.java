@@ -6,4 +6,7 @@ public interface Mapeable {
 	
 	public boolean esAlimento();
 	
+	public int getX();
+	public int getY();
+	
 }

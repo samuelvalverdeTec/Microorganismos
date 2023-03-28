@@ -27,4 +27,15 @@ public class AlimentoVelocidad extends Alimento {
 			micro.velocidad += atributo;
 	}
 	
+	
+	public boolean esAlimentoEnergia() {
+		return false;
+	}
+	public boolean esAlimentoVelocidad() {
+		return true;
+	}
+	public boolean esAlimentoVision() {
+		return false;
+	}
+	
 }

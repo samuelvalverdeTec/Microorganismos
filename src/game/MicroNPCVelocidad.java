@@ -1,5 +1,9 @@
 package game;
 
-public class MicroNPCVelocidad extends MicroNPC{
+import java.util.ArrayList;
 
+public class MicroNPCVelocidad extends MicroNPC{
+	
+
+	
 }
