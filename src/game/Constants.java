@@ -14,8 +14,8 @@ public interface Constants {
 	public static final int MAX_EDAD = 100;
 	public static final int MIN_EDAD = 1;
 	
-	public static final int TABLERO_SIZE_1 = 50;
-	public static final int TABLERO_SIZE_2 = 50;
+	public static final int TABLERO_SIZE_1 = 10;
+	public static final int TABLERO_SIZE_2 = 10;
 	
 	public static final int CANTIDAD_NPCS = 249;
 	

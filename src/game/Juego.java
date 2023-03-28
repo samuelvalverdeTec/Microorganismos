@@ -2,16 +2,23 @@ package game;
 
 import java.util.ArrayList;
 
-public class Juego implements Constants {
+import gui.Interfaz;
 
-	// Se crea el mapa
-	// Se crean los alimentos y los microorganismos
-	// Inicia la simulacion
+public class Juego implements Constants {
 	
-	Mapeable[][] mapa = new Mapeable[TABLERO_SIZE_1][TABLERO_SIZE_2];	// 50x50
-	ArrayList<Microorganismo> microList = new ArrayList<Microorganismo>();
-	ArrayList<Alimento> aliList = new ArrayList<Alimento>();
+	Mapeable[][] mapa;	// 50x50
+	ArrayList<Microorganismo> microList;
+	ArrayList<Alimento> aliList;
+	Interfaz gui;
 	
+	public Juego() {
+		
+		this.mapa = new Mapeable[TABLERO_SIZE_1][TABLERO_SIZE_2];
+		this.microList = new ArrayList<Microorganismo>();
+		this.aliList = new ArrayList<Alimento>();
+		this.gui = new Interfaz();
+		
+	}
 	
 	public void play() {
 		
