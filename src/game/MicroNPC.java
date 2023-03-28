@@ -325,9 +325,11 @@ public abstract class MicroNPC extends Microorganismo {
 					this.revisarPosicion(mapa[posXNueva][posYNueva]);
 					break;
 				}
+				this.energia = this.energia - DISMINUCION_ENERGIA_POR_CASILLA;
 			}
 			if(posYNueva < posYVieja-this.velocidad) {
 				posYNueva = posYNueva +1;
+				this.energia = this.energia + DISMINUCION_ENERGIA_POR_CASILLA;
 			}
 		}
 		else if(direccion == ORIENTATION.SOUTH) {
@@ -337,9 +339,11 @@ public abstract class MicroNPC extends Microorganismo {
 					this.revisarPosicion(mapa[posXNueva][posYNueva]);
 					break;
 				}
+				this.energia = this.energia - DISMINUCION_ENERGIA_POR_CASILLA;
 			}
 			if(posYNueva > posYVieja+this.velocidad) {
 				posYNueva = posYNueva -1;
+				this.energia = this.energia + DISMINUCION_ENERGIA_POR_CASILLA;
 			}
 		}
 		else if(direccion == ORIENTATION.EAST) {
@@ -349,9 +353,11 @@ public abstract class MicroNPC extends Microorganismo {
 					this.revisarPosicion(mapa[posXNueva][posYNueva]);
 					break;
 				}
+				this.energia = this.energia - DISMINUCION_ENERGIA_POR_CASILLA;
 			}
 			if(posXNueva > posXVieja+this.velocidad) {
 				posXNueva = posXNueva -1;
+				this.energia = this.energia + DISMINUCION_ENERGIA_POR_CASILLA;
 			}
 		}
 		else if(direccion == ORIENTATION.WEST){
@@ -361,9 +367,11 @@ public abstract class MicroNPC extends Microorganismo {
 					this.revisarPosicion(mapa[posXNueva][posYNueva]);
 					break;
 				}
+				this.energia = this.energia - DISMINUCION_ENERGIA_POR_CASILLA;
 			}
 			if(posXNueva < posXVieja-this.velocidad) {
 				posXNueva = posXNueva +1;
+				this.energia = this.energia + DISMINUCION_ENERGIA_POR_CASILLA;
 			}
 		}
 		
