@@ -25,6 +25,8 @@ public interface Constants {
 	public static final int VISION_JUGADOR = 3;
 	public static final int VELOCIDAD_JUGADOR = 2;
 	
+	
+	
 	// Agregar constantes de efectos entre atributos
 	
 }

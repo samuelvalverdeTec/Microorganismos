@@ -107,4 +107,8 @@ public class Microorganismo implements Constants, Mapeable {
 		
 	}
 	
+	public boolean esAlimento() {
+		return false;
+	}
+	
 }

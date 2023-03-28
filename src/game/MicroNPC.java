@@ -1,6 +1,6 @@
 package game;
 
-public class MicroNPC extends Microorganismo {
+public abstract class MicroNPC extends Microorganismo {
 
 	int direccion, casillas;
 	
@@ -21,6 +21,8 @@ public class MicroNPC extends Microorganismo {
 		this.posY = 0;
 		
 	}
+	
+	public abstract ORIENTATION revisarEntorno(Mapeable[][] mapa);
 	
 	public void move(Mapeable[][] mapa ,int direccion/*, int cantidadCasillas*/) {
 		

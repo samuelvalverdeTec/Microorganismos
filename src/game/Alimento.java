@@ -31,4 +31,7 @@ public abstract class Alimento implements Constants, Mapeable{
 	
 	public abstract void consumido(Microorganismo micro);
 	
+	public boolean esAlimento() {
+		return true;
+	}
 }
