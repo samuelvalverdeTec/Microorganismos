@@ -12,11 +12,11 @@ public class AlimentoEnergia extends Alimento {
 	public int definirAtributo(int size) {
 		
 		if(size==1) {
-			return (MAX_ENERGIA/6);
+			return (MAX_ENERGIA/100);
 		} else if(size==2) {
-			return (MAX_ENERGIA/3);
+			return (MAX_ENERGIA/50);
 		} else {
-			return (MAX_ENERGIA/2);
+			return (MAX_ENERGIA/25);
 		}
 		
 	}
@@ -24,6 +24,7 @@ public class AlimentoEnergia extends Alimento {
 	public void consumido(Microorganismo micro) {
 		//micro.setEnergia(micro.getEnergia() + this.atributo);	
 		micro.aumentarEnergia(this.getAtributo());
+		micro.contAumentoEnergia = micro.contAumentoEnergia + this.getAtributo();
 	}
 	
 	

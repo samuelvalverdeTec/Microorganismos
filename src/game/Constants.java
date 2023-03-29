@@ -29,8 +29,8 @@ public interface Constants {
 	
 	// Agregar constantes de efectos entre atributos
 	public static final int DISMINUCION_ENERGIA_POR_CASILLA = 5;
-	public static final int DISMINUCION_VISION_POR_EDAD = 1;
+	public static final int DISMINUCION_VISION_POR_10_EDAD = 1;
 	public static final int AUMENTO_EDAD_POR_TURNO = 1;
-	public static final int DISMINUCION_VELOCIDAD_POR_ENERGIA = 1;
+	public static final int DISMINUCION_VELOCIDAD_POR_30_ENERGIA = 1;
 	
 }

@@ -8,5 +8,5 @@ public interface Mapeable {
 	
 	public int getX();
 	public int getY();
-	
+	public void setPosicion(int pPosX, int pPosY);
 }

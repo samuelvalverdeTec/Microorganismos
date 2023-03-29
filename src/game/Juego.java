@@ -13,6 +13,7 @@ public class Juego implements Constants, KeyListener {
 	ArrayList<Microorganismo> microList;
 	ArrayList<Alimento> aliList;
 	Interfaz gui;
+	int contMicro = 2;
 	
 	public Juego() {
 		
@@ -27,6 +28,8 @@ public class Juego implements Constants, KeyListener {
 		
 		crearMapeables();
 		cargarMapeables();
+		controlarMicro();
+		//runGame();
 		
 	}
 	
@@ -35,8 +38,8 @@ public class Juego implements Constants, KeyListener {
 		MyMicroorganismo = new MyMicro();
 		MyMicroorganismo.numMicro = 1;
 		microList.add(MyMicroorganismo);
-		int contMicro = 2;
-		Microorganismo MicroorganismoNPC = null;
+		
+		MicroNPC MicroorganismoNPC = null;
 		for(int i=0; i<(CANTIDAD_NPCS/2); i++) {		// 250 microorganismos
 			MicroorganismoNPC = new MicroNPCVision();
 			MicroorganismoNPC.numMicro = contMicro;
@@ -62,10 +65,18 @@ public class Juego implements Constants, KeyListener {
 		} 
 	}
 	
+	
+	public void runGame() {
+		controlarMicro();
+	}
+	
+	
+	
 	public void cargarMapeables() {
 		
 		for(int i=0;i<microList.size();i++) {
-			boolean encontroPos = false;
+			encontrarPosRandomValida(microList.get(i));
+			/*boolean encontroPos = false;
 			while(encontroPos == false) {
 				int pPosX = (int)(Math.random()*(TABLERO_SIZE_1-1)+0);
 				int pPosY = (int)(Math.random()*(TABLERO_SIZE_2-1)+0);
@@ -74,11 +85,12 @@ public class Juego implements Constants, KeyListener {
 					mapa[pPosX][pPosY] = microList.get(i);
 					encontroPos = true;
 				}
-			}			
+			}*/			
 		}
 		
 		for(int i=0;i<aliList.size();i++) {
-			boolean encontroPos = false;
+			encontrarPosRandomValida(aliList.get(i));
+			/*boolean encontroPos = false;
 			while(encontroPos == false) {
 				int pPosX = (int)(Math.random()*(TABLERO_SIZE_1-1)+0);
 				int pPosY = (int)(Math.random()*(TABLERO_SIZE_2-1)+0);
@@ -87,10 +99,93 @@ public class Juego implements Constants, KeyListener {
 					mapa[pPosX][pPosY] = aliList.get(i);
 					encontroPos = true;
 				}
-			}			
+			}*/			
 		}
 		
 	}
+	
+	public void encontrarPosRandomValida(Mapeable objeto) {
+		boolean encontroPos = false;
+		while(encontroPos == false) {
+			int pPosX = (int)(Math.random()*(TABLERO_SIZE_1-1)+0);
+			int pPosY = (int)(Math.random()*(TABLERO_SIZE_2-1)+0);
+			if(mapa[pPosX][pPosY] == null) {
+				objeto.setPosicion(pPosX, pPosY);
+				mapa[pPosX][pPosY] = objeto;
+				encontroPos = true;
+			}
+		}	
+	}
+	
+	
+	
+	public void controlarMicro() {
+		MyMicroorganismo = (MyMicro)microList.get(0);
+		while(MyMicroorganismo.getIsAlive()) {
+			while(MyMicroorganismo.getOrientation() == null) {
+				//System.out.println("ciclo");
+				//esperando tecla
+			}
+			MyMicroorganismo.move(mapa);
+			MyMicroorganismo.setOrientation(null);
+			MyMicroorganismo.aumentarEdad(AUMENTO_EDAD_POR_TURNO);
+			MyMicroorganismo.contAumentoEdad++;
+			MyMicroorganismo.revisarAtributos();
+			MyMicroorganismo.mostrarInfoMicroorganismo();
+			//dibujar
+
+			for(int i = 1; i<microList.size(); i++) {
+				MicroNPC microorganismoNPC = (MicroNPC)microList.get(i);
+				if(microorganismoNPC.getIsAlive()) {
+					microorganismoNPC.revisarEntorno(mapa);
+					microorganismoNPC.move(mapa);
+					microorganismoNPC.aumentarEdad(AUMENTO_EDAD_POR_TURNO);
+					microorganismoNPC.contAumentoEdad++;
+					microorganismoNPC.revisarAtributos();
+					microorganismoNPC.mostrarInfoMicroorganismo();
+				}
+				else {
+					MicroNPC newMicroorganismoNPC = null;
+					if(microorganismoNPC.esNPCVision()) {
+						newMicroorganismoNPC = new MicroNPCVision();
+					}
+					else {
+						newMicroorganismoNPC = new MicroNPCVelocidad();
+					}
+					newMicroorganismoNPC.numMicro = contMicro;
+					contMicro++;
+					encontrarPosRandomValida(newMicroorganismoNPC);
+					
+					microList.remove(i);
+					microList.add(newMicroorganismoNPC);
+					newMicroorganismoNPC.mostrarInfoMicroorganismo();
+					
+				}
+			
+				try {
+					//for(int i = 0; i<microList.size(); i++) {
+					//	interfaz.mostrarImagen((MyRobot) ListaRobots.get(i));
+					//}
+					Thread.sleep(6000);
+				}
+				catch (Exception ex) {
+					ex.printStackTrace();
+				}
+				//interfaz.RepaintRobots();
+				//interfaz.RevalidateInfoRobot(CurrentRobot);
+
+				
+			}
+
+		}
+		System.out.println("Perdio");
+		//interfaz.GameOver();
+		//interfaz.RepaintRobots();
+
+	}
+	
+	
+	
 	
 	
 	

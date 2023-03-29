@@ -5,6 +5,7 @@ public class Microorganismo implements Constants, Mapeable {
 	public int numMicro;
 
 	private boolean isAlive = true;
+	private ORIENTATION dirMover = null;
 	
 	private int energia;
 	private int vision;
@@ -13,6 +14,9 @@ public class Microorganismo implements Constants, Mapeable {
 	
 	private int posX;
 	private int posY;
+	
+	public int contAumentoEnergia = 0;
+	public int contAumentoEdad = 0;
 	
 	public void setPosicion(int pPosX, int pPosY) {
 		this.posX = pPosX;
@@ -80,7 +84,33 @@ public class Microorganismo implements Constants, Mapeable {
 	public void setIsAlive(boolean pIsAlive) {
 		this.isAlive = pIsAlive;
 	}
+	public ORIENTATION getOrientation() {
+		return this.dirMover;
+	}
+	public void setOrientation(ORIENTATION pOrientation) {
+		this.dirMover = pOrientation;
+	}
 	
+	public void mostrarInfoMicroorganismo() {
+		System.out.println("______________________________");
+		System.out.println("Microorganismo " + this.numMicro);
+		System.out.println("(PosX: " + this.getX() + ", PosY: " + this.getY() + ")");
+		System.out.println("Energia: " + this.getEnergia());
+		System.out.println("Edad: " + this.getEdad());
+		System.out.println("Vision: " + this.getVision());
+		System.out.println("Velocidad: " + this.getVelocidad());
+	}
+	
+	public void revisarAtributos() {
+		if(this.contAumentoEdad >= 10) {
+			this.disminuirVision(DISMINUCION_VISION_POR_10_EDAD);
+			this.contAumentoEdad = 0;
+		}
+		if(this.contAumentoEnergia >= 30) {
+			this.disminuirVelocidad(DISMINUCION_VELOCIDAD_POR_30_ENERGIA);
+			this.contAumentoEnergia = 0;
+		}
+	}
 	
 	public void comer(Alimento alimento) {		
 		alimento.consumido(this);
@@ -208,70 +238,73 @@ public class Microorganismo implements Constants, Mapeable {
 	}
 	
 	
-	public void move(Mapeable[][] mapa, ORIENTATION direccion/*, int cantidadCasillas*/) {
+	public void move(Mapeable[][] mapa) {
 		int posXVieja = this.getX();
 		int posYVieja = this.getY();
 		int posXNueva = this.getX();
 		int posYNueva = this.getY();
+		ORIENTATION dirMoverAct = this.getOrientation();
 		
-		if(direccion == ORIENTATION.NORTH) {
-			//this.posY = this.posY - this.velocidad;
-			for(posYNueva = posYVieja-1; posYNueva >= posYVieja-this.getVelocidad(); posYNueva--) {
-				this.disminuirEnergia(DISMINUCION_ENERGIA_POR_CASILLA);
-				if(mapa[posXNueva][posYNueva] != null) {
-					this.revisarPosicion(mapa[posXNueva][posYNueva]);
-					break;
+		if(dirMoverAct != null) {	
+			if(dirMoverAct == ORIENTATION.NORTH) {
+				//this.posY = this.posY - this.velocidad;
+				for(posYNueva = posYVieja-1; posYNueva >= posYVieja-this.getVelocidad(); posYNueva--) {
+					this.disminuirEnergia(DISMINUCION_ENERGIA_POR_CASILLA);
+					if(mapa[posXNueva][posYNueva] != null) {
+						this.revisarPosicion(mapa[posXNueva][posYNueva]);
+						break;
+					}
+				}
+				if(posYNueva < posYVieja-this.getVelocidad()) {
+					posYNueva = posYNueva +1;
 				}
 			}
-			if(posYNueva < posYVieja-this.getVelocidad()) {
-				posYNueva = posYNueva +1;
-			}
-		}
-		else if(direccion == ORIENTATION.SOUTH) {
-			//this.posY = this.posY + this.velocidad;
-			for(posYNueva = posYVieja+1; posYNueva <= posYVieja+this.getVelocidad(); posYNueva++) {
-				this.disminuirEnergia(DISMINUCION_ENERGIA_POR_CASILLA);
-				if(mapa[posXNueva][posYNueva] != null) {
-					this.revisarPosicion(mapa[posXNueva][posYNueva]);
-					break;
+			else if(dirMoverAct == ORIENTATION.SOUTH) {
+				//this.posY = this.posY + this.velocidad;
+				for(posYNueva = posYVieja+1; posYNueva <= posYVieja+this.getVelocidad(); posYNueva++) {
+					this.disminuirEnergia(DISMINUCION_ENERGIA_POR_CASILLA);
+					if(mapa[posXNueva][posYNueva] != null) {
+						this.revisarPosicion(mapa[posXNueva][posYNueva]);
+						break;
+					}
+				}
+				if(posYNueva > posYVieja+this.getVelocidad()) {
+					posYNueva = posYNueva -1;
 				}
 			}
-			if(posYNueva > posYVieja+this.getVelocidad()) {
-				posYNueva = posYNueva -1;
-			}
-		}
-		else if(direccion == ORIENTATION.EAST) {
-			//this.posX = this.posX + this.velocidad;
-			for(posXNueva = posXVieja+1; posXNueva <= posXVieja+this.getVelocidad(); posXNueva++) {
-				this.disminuirEnergia(DISMINUCION_ENERGIA_POR_CASILLA);
-				if(mapa[posXNueva][posYNueva] != null) {
-					this.revisarPosicion(mapa[posXNueva][posYNueva]);
-					break;
+			else if(dirMoverAct == ORIENTATION.EAST) {
+				//this.posX = this.posX + this.velocidad;
+				for(posXNueva = posXVieja+1; posXNueva <= posXVieja+this.getVelocidad(); posXNueva++) {
+					this.disminuirEnergia(DISMINUCION_ENERGIA_POR_CASILLA);
+					if(mapa[posXNueva][posYNueva] != null) {
+						this.revisarPosicion(mapa[posXNueva][posYNueva]);
+						break;
+					}
+				}
+				if(posXNueva > posXVieja+this.getVelocidad()) {
+					posXNueva = posXNueva -1;
 				}
 			}
-			if(posXNueva > posXVieja+this.getVelocidad()) {
-				posXNueva = posXNueva -1;
-			}
-		}
-		else if(direccion == ORIENTATION.WEST){
-			//this.posX = this.posX - this.velocidad;
-			for(posXNueva = posXVieja-1; posXNueva >= posXVieja-this.getVelocidad(); posXNueva--) {
-				this.disminuirEnergia(DISMINUCION_ENERGIA_POR_CASILLA);
-				if(mapa[posXNueva][posYNueva] != null) {
-					this.revisarPosicion(mapa[posXNueva][posYNueva]);
-					break;
+			else if(dirMoverAct == ORIENTATION.WEST){
+				//this.posX = this.posX - this.velocidad;
+				for(posXNueva = posXVieja-1; posXNueva >= posXVieja-this.getVelocidad(); posXNueva--) {
+					this.disminuirEnergia(DISMINUCION_ENERGIA_POR_CASILLA);
+					if(mapa[posXNueva][posYNueva] != null) {
+						this.revisarPosicion(mapa[posXNueva][posYNueva]);
+						break;
+					}
+				}
+				if(posXNueva < posXVieja-this.getVelocidad()) {
+					posXNueva = posXNueva +1;
 				}
 			}
-			if(posXNueva < posXVieja-this.getVelocidad()) {
-				posXNueva = posXNueva +1;
-			}
+			
+			this.setPosicion(posXNueva, posYNueva);
+			//int posXNueva = this.posX;
+			//int posYNueva = this.posY;
+			mapa[posXVieja][posYVieja] = null;
+			mapa[posXNueva][posYNueva] = this;
 		}
-		
-		this.setPosicion(posXNueva, posYNueva);
-		//int posXNueva = this.posX;
-		//int posYNueva = this.posY;
-		mapa[posXVieja][posYVieja] = null;
-		mapa[posXNueva][posYNueva] = this;
 		
 	}
 	

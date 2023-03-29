@@ -15,7 +15,7 @@ public class Interfaz implements Constants {
 		
 		JFrame f = new JFrame("Microorganismos");
 	    JPanel p = new JPanel();
-	    
+	    f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
 	    p.setLayout(new GridLayout(TABLERO_SIZE_1, TABLERO_SIZE_2));
 
 	    for(int r = 0; r < TABLERO_SIZE_1; r++){

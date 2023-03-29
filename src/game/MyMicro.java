@@ -5,8 +5,6 @@ import java.awt.event.KeyListener;
 
 
 public class MyMicro extends Microorganismo {
-	
-	private ORIENTATION dirMover;
 
 	public MyMicro() {
 		
@@ -17,13 +15,6 @@ public class MyMicro extends Microorganismo {
 		
 		this.setPosicion(0,0);
 		
-	}
-	
-	public ORIENTATION getOrientation() {
-		return this.dirMover;
-	}
-	public void setOrientation(ORIENTATION pOrientation) {
-		this.dirMover = pOrientation;
 	}
 	
 }

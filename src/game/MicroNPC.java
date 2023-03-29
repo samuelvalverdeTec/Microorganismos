@@ -28,7 +28,7 @@ public abstract class MicroNPC extends Microorganismo {
 	public abstract boolean esNPCVision();
 	
 	
-	public ORIENTATION revisarEntorno(Mapeable[][] mapa) {
+	public void revisarEntorno(Mapeable[][] mapa) {
 		
 		ORIENTATION dirMover = null;
 		ORIENTATION MoverDirFinal = null;
@@ -306,7 +306,7 @@ public abstract class MicroNPC extends Microorganismo {
 			}
 		}
 		
-		return MoverDirFinal;
+		this.setOrientation(MoverDirFinal);
 		
 	}
 	
