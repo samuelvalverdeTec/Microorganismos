@@ -14,13 +14,12 @@ public abstract class MicroNPC extends Microorganismo {
 		int pEdad = (int)(Math.random()*MAX_EDAD+MIN_EDAD);
 		
 		
-		this.energia = pEnergia;
-		this.vision = pVision;
-		this.velocidad = pVelocidad;
-		this.edad = pEdad;
+		this.setEnergia(pEnergia);
+		this.setVision(pVision);
+		this.setVelocidad(pVelocidad);
+		this.setEdad(pEdad);
 		
-		this.posX = 0;
-		this.posY = 0;
+		this.setPosicion(0,0);
 		
 	}
 	
@@ -43,10 +42,10 @@ public abstract class MicroNPC extends Microorganismo {
 		ArrayList<Alimento> alimentosEncontrados = new ArrayList<Alimento>();
 		ArrayList<Microorganismo> microsEncontrados = new ArrayList<Microorganismo>();
 			
-		int PosXInicioBusqueda = this.posX - this.vision;
-		int PosYInicioBusqueda = this.posY - this.vision;
-		int PosXFinBusqueda = this.posX + this.vision;
-		int PosYFinBusqueda = this.posY + this.vision;
+		int PosXInicioBusqueda = this.getX() - this.getVision();
+		int PosYInicioBusqueda = this.getY() - this.getVision();
+		int PosXFinBusqueda = this.getX() + this.getVision();
+		int PosYFinBusqueda = this.getY() + this.getVision();
 			
 		for(int PosXBusqueda = PosXInicioBusqueda; PosXBusqueda <= PosXFinBusqueda; PosXBusqueda++) {
 			for(int PosYBusqueda = PosYInicioBusqueda; PosYBusqueda <= PosYFinBusqueda; PosYBusqueda++) {
@@ -69,22 +68,22 @@ public abstract class MicroNPC extends Microorganismo {
 		boolean atacarMicro;
 		for(int i = 0; i < microsEncontrados.size(); i++) {
 			microEncontrado = microsEncontrados.get(i);
-			PosXMicroEncontrado = microEncontrado.posX;
-			PosYMicroEncontrado = microEncontrado.posY;
+			PosXMicroEncontrado = microEncontrado.getX();
+			PosYMicroEncontrado = microEncontrado.getY();
 			
 			atacarMicro = this.compararMicros(microEncontrado);
 			
 			if(!atacarMicro) {
-				if((PosXMicroEncontrado < this.posX)&&(PosYMicroEncontrado == this.posY)) {
+				if((PosXMicroEncontrado < this.getX())&&(PosYMicroEncontrado == this.getY())) {
 					direccionesValidas[ORIENTATION.WEST.getValue()] = false;
 				}
-				else if((PosXMicroEncontrado > this.posX)&&(PosYMicroEncontrado == this.posY)) {
+				else if((PosXMicroEncontrado > this.getX())&&(PosYMicroEncontrado == this.getY())) {
 					direccionesValidas[ORIENTATION.EAST.getValue()] = false;
 				}
-				else if((PosXMicroEncontrado == this.posX)&&(PosYMicroEncontrado < this.posY)) {
+				else if((PosXMicroEncontrado == this.getX())&&(PosYMicroEncontrado < this.getY())) {
 					direccionesValidas[ORIENTATION.NORTH.getValue()] = false;
 				}
-				else if((PosXMicroEncontrado == this.posX)&&(PosYMicroEncontrado > this.posY)) {
+				else if((PosXMicroEncontrado == this.getX())&&(PosYMicroEncontrado > this.getY())) {
 					direccionesValidas[ORIENTATION.SOUTH.getValue()] = false;
 				}
 			}		
@@ -100,8 +99,8 @@ public abstract class MicroNPC extends Microorganismo {
 				for(int i = 0; i < alimentosEncontrados.size(); i++) {
 					boolean alimentoAlcanzable = false;
 					alimentoEncontrado = alimentosEncontrados.get(i);
-					PosXAlimentoEncontrado = alimentoEncontrado.posX;
-					PosYAlimentoEncontrado = alimentoEncontrado.posY;
+					PosXAlimentoEncontrado = alimentoEncontrado.getX();
+					PosYAlimentoEncontrado = alimentoEncontrado.getY();
 					if(this.esNPCVision()) {
 						if ( (j == 0 && alimentoEncontrado.esAlimentoEnergia()) || 
 							 (j == 1 && alimentoEncontrado.esAlimentoVision()) ||
@@ -124,7 +123,7 @@ public abstract class MicroNPC extends Microorganismo {
 								dirMover = ORIENTATION.SOUTH;
 							}*/		
 							if(/*alimentoAlcanzable*/ dirMover != null && direccionesValidas[dirMover.getValue()]) {
-								if((mejorAlimentoEncontrado == null)||(alimentoEncontrado.atributo > mejorAlimentoEncontrado.atributo)) {
+								if((mejorAlimentoEncontrado == null)||(alimentoEncontrado.getAtributo() > mejorAlimentoEncontrado.getAtributo())) {
 									mejorAlimentoEncontrado = alimentoEncontrado;
 									MoverDirFinal = dirMover;
 								}
@@ -153,7 +152,7 @@ public abstract class MicroNPC extends Microorganismo {
 								dirMover = ORIENTATION.SOUTH;
 							}*/		
 							if(/*alimentoAlcanzable*/ dirMover != null && direccionesValidas[dirMover.getValue()]) {
-								if((mejorAlimentoEncontrado == null)||(alimentoEncontrado.atributo > mejorAlimentoEncontrado.atributo)) {
+								if((mejorAlimentoEncontrado == null)||(alimentoEncontrado.getAtributo() > mejorAlimentoEncontrado.getAtributo())) {
 									mejorAlimentoEncontrado = alimentoEncontrado;
 									MoverDirFinal = dirMover;
 								}
@@ -170,8 +169,8 @@ public abstract class MicroNPC extends Microorganismo {
 				for(int i = 0; i < alimentosEncontrados.size(); i++) {
 					boolean alimentoAlcanzable = false;
 					alimentoEncontrado = alimentosEncontrados.get(i);
-					PosXAlimentoEncontrado = alimentoEncontrado.posX;
-					PosYAlimentoEncontrado = alimentoEncontrado.posY;
+					PosXAlimentoEncontrado = alimentoEncontrado.getX();
+					PosYAlimentoEncontrado = alimentoEncontrado.getY();
 					if(this.esNPCVision()) {
 						if ( (j == 0 && alimentoEncontrado.esAlimentoEnergia()) || 
 							 (j == 1 && alimentoEncontrado.esAlimentoVision()) ||
@@ -190,31 +189,31 @@ public abstract class MicroNPC extends Microorganismo {
 								alimentoAlcanzable = true;
 							}*/
 							if(/*!alimentoAlcanzable*/ dirMover == null) {
-								if((PosXAlimentoEncontrado < this.posX)&&(PosYAlimentoEncontrado < this.posY)&&(direccionesValidas[ORIENTATION.NORTH.getValue()])) {
+								if((PosXAlimentoEncontrado < this.getX())&&(PosYAlimentoEncontrado < this.getY())&&(direccionesValidas[ORIENTATION.NORTH.getValue()])) {
 									dirMover = ORIENTATION.NORTH;
 								}
-								else if((PosXAlimentoEncontrado < this.posX)&&(PosYAlimentoEncontrado < this.posY)&&(direccionesValidas[ORIENTATION.WEST.getValue()])) {
+								else if((PosXAlimentoEncontrado < this.getX())&&(PosYAlimentoEncontrado < this.getY())&&(direccionesValidas[ORIENTATION.WEST.getValue()])) {
 									dirMover = ORIENTATION.WEST;
 								}
-								else if((PosXAlimentoEncontrado > this.posX)&&(PosYAlimentoEncontrado < this.posY)&&(direccionesValidas[ORIENTATION.NORTH.getValue()])) {
+								else if((PosXAlimentoEncontrado > this.getX())&&(PosYAlimentoEncontrado < this.getY())&&(direccionesValidas[ORIENTATION.NORTH.getValue()])) {
 									dirMover = ORIENTATION.NORTH;
 								}
-								else if((PosXAlimentoEncontrado > this.posX)&&(PosYAlimentoEncontrado < this.posY)&&(direccionesValidas[ORIENTATION.EAST.getValue()])) {
+								else if((PosXAlimentoEncontrado > this.getX())&&(PosYAlimentoEncontrado < this.getY())&&(direccionesValidas[ORIENTATION.EAST.getValue()])) {
 									dirMover = ORIENTATION.EAST;
 								}
-								else if((PosXAlimentoEncontrado < this.posX)&&(PosYAlimentoEncontrado > this.posY)&&(direccionesValidas[ORIENTATION.SOUTH.getValue()])) {
+								else if((PosXAlimentoEncontrado < this.getX())&&(PosYAlimentoEncontrado > this.getY())&&(direccionesValidas[ORIENTATION.SOUTH.getValue()])) {
 									dirMover = ORIENTATION.SOUTH;
 								}
-								else if((PosXAlimentoEncontrado < this.posX)&&(PosYAlimentoEncontrado > this.posY)&&(direccionesValidas[ORIENTATION.WEST.getValue()])) {
+								else if((PosXAlimentoEncontrado < this.getX())&&(PosYAlimentoEncontrado > this.getY())&&(direccionesValidas[ORIENTATION.WEST.getValue()])) {
 									dirMover = ORIENTATION.WEST;
 								}
-								else if((PosXAlimentoEncontrado > this.posX)&&(PosYAlimentoEncontrado > this.posY)&&(direccionesValidas[ORIENTATION.SOUTH.getValue()])) {
+								else if((PosXAlimentoEncontrado > this.getX())&&(PosYAlimentoEncontrado > this.getY())&&(direccionesValidas[ORIENTATION.SOUTH.getValue()])) {
 									dirMover = ORIENTATION.SOUTH;
 								}
-								else if((PosXAlimentoEncontrado > this.posX)&&(PosYAlimentoEncontrado > this.posY)&&(direccionesValidas[ORIENTATION.EAST.getValue()])) {
+								else if((PosXAlimentoEncontrado > this.getX())&&(PosYAlimentoEncontrado > this.getY())&&(direccionesValidas[ORIENTATION.EAST.getValue()])) {
 									dirMover = ORIENTATION.EAST;
 								}
-								if((mejorAlimentoEncontrado == null)||(alimentoEncontrado.atributo > mejorAlimentoEncontrado.atributo)) {
+								if((mejorAlimentoEncontrado == null)||(alimentoEncontrado.getAtributo() > mejorAlimentoEncontrado.getAtributo())) {
 									mejorAlimentoEncontrado = alimentoEncontrado;
 									MoverDirFinal = dirMover;
 								}
@@ -239,31 +238,31 @@ public abstract class MicroNPC extends Microorganismo {
 								alimentoAlcanzable = true;
 							}*/
 							if(/*!alimentoAlcanzable*/ dirMover == null) {
-								if((PosXAlimentoEncontrado < this.posX)&&(PosYAlimentoEncontrado < this.posY)&&(direccionesValidas[ORIENTATION.NORTH.getValue()])) {
+								if((PosXAlimentoEncontrado < this.getX())&&(PosYAlimentoEncontrado < this.getY())&&(direccionesValidas[ORIENTATION.NORTH.getValue()])) {
 									dirMover = ORIENTATION.NORTH;
 								}
-								else if((PosXAlimentoEncontrado < this.posX)&&(PosYAlimentoEncontrado < this.posY)&&(direccionesValidas[ORIENTATION.WEST.getValue()])) {
+								else if((PosXAlimentoEncontrado < this.getX())&&(PosYAlimentoEncontrado < this.getY())&&(direccionesValidas[ORIENTATION.WEST.getValue()])) {
 									dirMover = ORIENTATION.WEST;
 								}
-								else if((PosXAlimentoEncontrado > this.posX)&&(PosYAlimentoEncontrado < this.posY)&&(direccionesValidas[ORIENTATION.NORTH.getValue()])) {
+								else if((PosXAlimentoEncontrado > this.getX())&&(PosYAlimentoEncontrado < this.getY())&&(direccionesValidas[ORIENTATION.NORTH.getValue()])) {
 									dirMover = ORIENTATION.NORTH;
 								}
-								else if((PosXAlimentoEncontrado > this.posX)&&(PosYAlimentoEncontrado < this.posY)&&(direccionesValidas[ORIENTATION.EAST.getValue()])) {
+								else if((PosXAlimentoEncontrado > this.getX())&&(PosYAlimentoEncontrado < this.getY())&&(direccionesValidas[ORIENTATION.EAST.getValue()])) {
 									dirMover = ORIENTATION.EAST;
 								}
-								else if((PosXAlimentoEncontrado < this.posX)&&(PosYAlimentoEncontrado > this.posY)&&(direccionesValidas[ORIENTATION.SOUTH.getValue()])) {
+								else if((PosXAlimentoEncontrado < this.getX())&&(PosYAlimentoEncontrado > this.getY())&&(direccionesValidas[ORIENTATION.SOUTH.getValue()])) {
 									dirMover = ORIENTATION.SOUTH;
 								}
-								else if((PosXAlimentoEncontrado < this.posX)&&(PosYAlimentoEncontrado > this.posY)&&(direccionesValidas[ORIENTATION.WEST.getValue()])) {
+								else if((PosXAlimentoEncontrado < this.getX())&&(PosYAlimentoEncontrado > this.getY())&&(direccionesValidas[ORIENTATION.WEST.getValue()])) {
 									dirMover = ORIENTATION.WEST;
 								}
-								else if((PosXAlimentoEncontrado > this.posX)&&(PosYAlimentoEncontrado > this.posY)&&(direccionesValidas[ORIENTATION.SOUTH.getValue()])) {
+								else if((PosXAlimentoEncontrado > this.getX())&&(PosYAlimentoEncontrado > this.getY())&&(direccionesValidas[ORIENTATION.SOUTH.getValue()])) {
 									dirMover = ORIENTATION.SOUTH;
 								}
-								else if((PosXAlimentoEncontrado > this.posX)&&(PosYAlimentoEncontrado > this.posY)&&(direccionesValidas[ORIENTATION.EAST.getValue()])) {
+								else if((PosXAlimentoEncontrado > this.getX())&&(PosYAlimentoEncontrado > this.getY())&&(direccionesValidas[ORIENTATION.EAST.getValue()])) {
 									dirMover = ORIENTATION.EAST;
 								}
-								if((mejorAlimentoEncontrado == null)||(alimentoEncontrado.atributo > mejorAlimentoEncontrado.atributo)) {
+								if((mejorAlimentoEncontrado == null)||(alimentoEncontrado.getAtributo() > mejorAlimentoEncontrado.getAtributo())) {
 									mejorAlimentoEncontrado = alimentoEncontrado;
 									MoverDirFinal = dirMover;
 								}
@@ -312,66 +311,62 @@ public abstract class MicroNPC extends Microorganismo {
 	}
 	
 	
-	public void move(Mapeable[][] mapa, ORIENTATION direccion/*, int cantidadCasillas*/) {
-		int posXVieja = this.posX;
-		int posYVieja = this.posY;
-		int posXNueva = this.posX;
-		int posYNueva = this.posY;
+	/*public void move(Mapeable[][] mapa, ORIENTATION direccion) {
+		int posXVieja = this.getX();
+		int posYVieja = this.getY();
+		int posXNueva = this.getX();
+		int posYNueva = this.getY();
 		
 		if(direccion == ORIENTATION.NORTH) {
 			//this.posY = this.posY - this.velocidad;
-			for(posYNueva = posYVieja-1; posYNueva >= posYVieja-this.velocidad; posYNueva--) {
+			for(posYNueva = posYVieja-1; posYNueva >= posYVieja-this.getVelocidad(); posYNueva--) {
+				this.disminuirEnergia(DISMINUCION_ENERGIA_POR_CASILLA);
 				if(mapa[posXNueva][posYNueva] != null) {
 					this.revisarPosicion(mapa[posXNueva][posYNueva]);
 					break;
 				}
-				this.energia = this.energia - DISMINUCION_ENERGIA_POR_CASILLA;
 			}
-			if(posYNueva < posYVieja-this.velocidad) {
+			if(posYNueva < posYVieja-this.getVelocidad()) {
 				posYNueva = posYNueva +1;
-				this.energia = this.energia + DISMINUCION_ENERGIA_POR_CASILLA;
 			}
 		}
 		else if(direccion == ORIENTATION.SOUTH) {
 			//this.posY = this.posY + this.velocidad;
-			for(posYNueva = posYVieja+1; posYNueva <= posYVieja+this.velocidad; posYNueva++) {
+			for(posYNueva = posYVieja+1; posYNueva <= posYVieja+this.getVelocidad(); posYNueva++) {
+				this.disminuirEnergia(DISMINUCION_ENERGIA_POR_CASILLA);
 				if(mapa[posXNueva][posYNueva] != null) {
 					this.revisarPosicion(mapa[posXNueva][posYNueva]);
 					break;
 				}
-				this.energia = this.energia - DISMINUCION_ENERGIA_POR_CASILLA;
 			}
-			if(posYNueva > posYVieja+this.velocidad) {
+			if(posYNueva > posYVieja+this.getVelocidad()) {
 				posYNueva = posYNueva -1;
-				this.energia = this.energia + DISMINUCION_ENERGIA_POR_CASILLA;
 			}
 		}
 		else if(direccion == ORIENTATION.EAST) {
 			//this.posX = this.posX + this.velocidad;
-			for(posXNueva = posXVieja+1; posXNueva <= posXVieja+this.velocidad; posXNueva++) {
+			for(posXNueva = posXVieja+1; posXNueva <= posXVieja+this.getVelocidad(); posXNueva++) {
+				this.disminuirEnergia(DISMINUCION_ENERGIA_POR_CASILLA);
 				if(mapa[posXNueva][posYNueva] != null) {
 					this.revisarPosicion(mapa[posXNueva][posYNueva]);
 					break;
 				}
-				this.energia = this.energia - DISMINUCION_ENERGIA_POR_CASILLA;
 			}
-			if(posXNueva > posXVieja+this.velocidad) {
+			if(posXNueva > posXVieja+this.getVelocidad()) {
 				posXNueva = posXNueva -1;
-				this.energia = this.energia + DISMINUCION_ENERGIA_POR_CASILLA;
 			}
 		}
 		else if(direccion == ORIENTATION.WEST){
 			//this.posX = this.posX - this.velocidad;
-			for(posXNueva = posXVieja-1; posXNueva >= posXVieja-this.velocidad; posXNueva--) {
+			for(posXNueva = posXVieja-1; posXNueva >= posXVieja-this.getVelocidad(); posXNueva--) {
+				this.disminuirEnergia(DISMINUCION_ENERGIA_POR_CASILLA);
 				if(mapa[posXNueva][posYNueva] != null) {
 					this.revisarPosicion(mapa[posXNueva][posYNueva]);
 					break;
 				}
-				this.energia = this.energia - DISMINUCION_ENERGIA_POR_CASILLA;
 			}
-			if(posXNueva < posXVieja-this.velocidad) {
+			if(posXNueva < posXVieja-this.getVelocidad()) {
 				posXNueva = posXNueva +1;
-				this.energia = this.energia + DISMINUCION_ENERGIA_POR_CASILLA;
 			}
 		}
 		
@@ -381,6 +376,6 @@ public abstract class MicroNPC extends Microorganismo {
 		mapa[posXVieja][posYVieja] = null;
 		mapa[posXNueva][posYNueva] = this;
 		
-	}
+	}*/
 	
 }

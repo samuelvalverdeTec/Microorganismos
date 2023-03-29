@@ -2,12 +2,12 @@ package game;
 
 public abstract class Alimento implements Constants, Mapeable{
 
-	public int tamanho;
-	public int atributo;
-	public boolean consumido = false;
+	private int tamanho;
+	private int atributo;
+	private boolean consumido = false;
 	
-	public int posX;
-	public int posY;
+	private int posX;
+	private int posY;
 
 	public Alimento() {
 		
@@ -19,7 +19,18 @@ public abstract class Alimento implements Constants, Mapeable{
 	public void setPosicion(int pPosX, int pPosY) {
 		this.posX = pPosX;
 		this.posY = pPosY;
-		
+	}
+	public boolean getIsConsumido() {
+		return this.consumido;
+	}
+	public void setIsConsumido(boolean pIsConsumido) {
+		this.consumido = pIsConsumido;
+	}
+	public int getAtributo() {
+		return this.atributo;
+	}
+	public int getTamano() {
+		return this.tamanho;
 	}
 	
 	public int definirTamanho() {

@@ -23,9 +23,10 @@ public class AlimentoVision extends Alimento {
 	
 	public void consumido(Microorganismo micro) {
 		
-		if(micro.vision != MAX_VISION)
-			micro.vision += atributo;
-		
+		if(micro.getVision() < MAX_VISION) {
+			//micro.setVision(micro.getVision() + this.atributo);
+			micro.aumentarVision(this.getAtributo());
+		}
 	}
 	
 	

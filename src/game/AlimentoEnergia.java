@@ -22,9 +22,8 @@ public class AlimentoEnergia extends Alimento {
 	}
 	
 	public void consumido(Microorganismo micro) {
-		
-		micro.energia += atributo;
-		
+		//micro.setEnergia(micro.getEnergia() + this.atributo);	
+		micro.aumentarEnergia(this.getAtributo());
 	}
 	
 	

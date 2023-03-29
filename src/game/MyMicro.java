@@ -4,95 +4,26 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 
-public class MyMicro extends Microorganismo implements KeyListener {
+public class MyMicro extends Microorganismo {
+	
+	private ORIENTATION dirMover;
 
 	public MyMicro() {
 		
-		this.edad = EDAD_JUGADOR;
-		this.energia = ENERGIA_JUGADOR;
-		this.vision = VISION_JUGADOR;
-		this.velocidad = VELOCIDAD_JUGADOR;
+		this.setEdad(EDAD_JUGADOR);
+		this.setEnergia(ENERGIA_JUGADOR);
+		this.setVision(VISION_JUGADOR);
+		this.setVelocidad(VELOCIDAD_JUGADOR);
 		
-		this.posX = 0;
-		this.posY = 0;
-		
-	}
-	
-	public void move() {
-		
-		
+		this.setPosicion(0,0);
 		
 	}
 	
-	@Override
-	public void keyTyped(KeyEvent e) {
+	public ORIENTATION getOrientation() {
+		return this.dirMover;
 	}
-
-
-
-	@Override
-	public void keyPressed(KeyEvent e) {
-		if(this != null) {
-			int key = e.getKeyCode();
-		    if (key == KeyEvent.VK_LEFT) {
-		    	if(this.isAlive) {
-			    	if(this.energia > 0) {
-			    		this.posX = this.posX - VELOCIDAD_JUGADOR;
-			    	}
-		    	}
-		    }
-	
-		    else if (key == KeyEvent.VK_RIGHT) {
-		    	if(this.isAlive) {
-		    		if(this.energia > 0) {
-			    		this.posX = this.posX + VELOCIDAD_JUGADOR;
-			    	}
-		    	}
-		    }
-	
-		    else if (key == KeyEvent.VK_UP) {
-		    	if(this.isAlive) {
-		    		if(this.energia > 0) {
-			    		this.posY = this.posY + VELOCIDAD_JUGADOR;
-			    	}
-		    	}
-		    }
-	
-		    else if (key == KeyEvent.VK_DOWN) {
-		    	if(this.isAlive) {
-		    		if(this.energia > 0) {
-			    		this.posY = this.posY - VELOCIDAD_JUGADOR;
-			    	}
-		    	}    	
-		    }
-
-		}
+	public void setOrientation(ORIENTATION pOrientation) {
+		this.dirMover = pOrientation;
 	}
-
-
-
-	@Override
-	public void keyReleased(KeyEvent e) {
-		/*if(this != null) {
-			int key = e.getKeyCode();
-		    if (key == KeyEvent.VK_LEFT) {
-		    	
-		    }
-	
-		    else if (key == KeyEvent.VK_RIGHT) {
-		    	
-		    }
-	
-		    else if (key == KeyEvent.VK_UP) {
-		    	
-		    }
-	
-		    else if (key == KeyEvent.VK_DOWN) {
-		    	
-		    }
-		}*/
-	}
-	
-	
 	
 }

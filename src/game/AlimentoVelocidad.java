@@ -23,8 +23,10 @@ public class AlimentoVelocidad extends Alimento {
 	
 	public void consumido(Microorganismo micro) {
 		
-		if(micro.velocidad != MAX_VELOCIDAD)
-			micro.velocidad += atributo;
+		if(micro.getVelocidad() < MAX_VELOCIDAD) {
+			//micro.setVelocidad(micro.getVelocidad() + this.atributo);
+			micro.aumentarVelocidad(this.getAtributo());
+		}
 	}
 	
 	
