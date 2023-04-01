@@ -22,8 +22,8 @@ public class Interfaz implements Constants {
 	JButton gui[][];
 	
 	public static String rutaImagenes = "C:\\Users\\jcval\\OneDrive - Estudiantes ITCR\\IS2023\\poo\\Microorganismos\\src\\";
-	public String rutaA = "alimento.jpg";
-	public String rutaM = "micro.jpg";
+	public String rutaA = "alimento.png";
+	public String rutaM = "micro.png";
 	public BufferedImage imgA = null;
 	public BufferedImage imgM = null;
 	
