@@ -1,6 +1,7 @@
 package gui;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -10,6 +11,7 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import game.Constants;
@@ -29,7 +31,7 @@ public class Interfaz implements Constants {
 	
 	public Interfaz() {
 	
-		this.gui = new JButton [TABLERO_SIZE_1][TABLERO_SIZE_2];
+		this.gui = new JButton[TABLERO_SIZE_1][TABLERO_SIZE_2];
 		
 		this.frame = new JFrame("Microorganismos");
 	    this.panel = new JPanel();
@@ -74,6 +76,16 @@ public class Interfaz implements Constants {
 	            casilla.setBackground(Color.lightGray);
 	        }
 	    }
+		
+	}
+	
+	public void gameOver() {
+		
+		JLabel gameOverLbl = new JLabel("Game Over");
+		gameOverLbl.setFont(new Font("Courier",Font.BOLD/Font.PLAIN/Font.ITALIC,24));
+		gameOverLbl.setBackground(Color.lightGray);
+	    gameOverLbl.setForeground(Color.RED);
+	    panel.add(gameOverLbl);
 		
 	}
 	

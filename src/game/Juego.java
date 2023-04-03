@@ -171,16 +171,16 @@ public class Juego implements Constants, KeyListener {
 				catch (Exception ex) {
 					ex.printStackTrace();
 				}
+				gui.refrescar(mapa);
 				//interfaz.RepaintRobots();
 				//interfaz.RevalidateInfoRobot(CurrentRobot);
 
 				
 			}
-
+   
 		}
 		System.out.println("Perdio");
-		//interfaz.GameOver();
-		//interfaz.RepaintRobots();
+		gui.gameOver();
 
 	}
 	
