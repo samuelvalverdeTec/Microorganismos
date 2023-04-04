@@ -17,7 +17,7 @@ public interface Constants {
 	public static final int TABLERO_SIZE_1 = 20;
 	public static final int TABLERO_SIZE_2 = 20;
 	
-	public static final int CANTIDAD_NPCS = (TABLERO_SIZE_1*TABLERO_SIZE_2)/10;
+	public static final int CANTIDAD_NPCS = 2;//(TABLERO_SIZE_1*TABLERO_SIZE_2)/10;
 	
 	
 	public static final int EDAD_JUGADOR = 20;

@@ -46,16 +46,29 @@ public abstract class MicroNPC extends Microorganismo {
 		int PosYInicioBusqueda = this.getY() - this.getVision();
 		int PosXFinBusqueda = this.getX() + this.getVision();
 		int PosYFinBusqueda = this.getY() + this.getVision();
+		
+		if(PosXInicioBusqueda < 0) {
+			PosXInicioBusqueda = 0;
+		}
+		if(PosYInicioBusqueda < 0) {
+			PosYInicioBusqueda = 0;
+		}
+		if(PosXFinBusqueda > TABLERO_SIZE_2-1) {
+			PosXFinBusqueda = TABLERO_SIZE_2-1;
+		}
+		if(PosYFinBusqueda > TABLERO_SIZE_1-1) {
+			PosYFinBusqueda = TABLERO_SIZE_1-1;
+		}
 			
 		for(int PosXBusqueda = PosXInicioBusqueda; PosXBusqueda <= PosXFinBusqueda; PosXBusqueda++) {
 			for(int PosYBusqueda = PosYInicioBusqueda; PosYBusqueda <= PosYFinBusqueda; PosYBusqueda++) {
-				if(mapa[PosXBusqueda][PosYBusqueda] != this) {
-					if(mapa[PosXBusqueda][PosYBusqueda] != null) {
-						if(mapa[PosXBusqueda][PosYBusqueda].esAlimento()) {
-							alimentosEncontrados.add((Alimento) mapa[PosXBusqueda][PosYBusqueda]);
+				if(mapa[PosYBusqueda][PosXBusqueda] != this) {
+					if(mapa[PosYBusqueda][PosXBusqueda] != null) {
+						if(mapa[PosYBusqueda][PosXBusqueda].esAlimento()) {
+							alimentosEncontrados.add((Alimento) mapa[PosYBusqueda][PosXBusqueda]);
 						}
 						else {
-							microsEncontrados.add((Microorganismo) mapa[PosXBusqueda][PosYBusqueda]);
+							microsEncontrados.add((Microorganismo) mapa[PosYBusqueda][PosXBusqueda]);
 						}
 					}
 				}

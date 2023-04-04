@@ -155,6 +155,7 @@ public class Microorganismo implements Constants, Mapeable {
 	public boolean agotado() {
 		
 		if(this.energia<=0) {
+			this.setEnergia(0);
 			return true;
 		}
 		return false;
@@ -244,68 +245,113 @@ public class Microorganismo implements Constants, Mapeable {
 		int posXNueva = this.getX();
 		int posYNueva = this.getY();
 		ORIENTATION dirMoverAct = this.getOrientation();
-		
-		if(dirMoverAct != null) {	
-			if(dirMoverAct == ORIENTATION.NORTH) {
-				//this.posY = this.posY - this.velocidad;
-				for(posYNueva = posYVieja-1; posYNueva >= posYVieja-this.getVelocidad(); posYNueva--) {
-					this.disminuirEnergia(DISMINUCION_ENERGIA_POR_CASILLA);
-					if(mapa[posXNueva][posYNueva] != null) {
-						this.revisarPosicion(mapa[posXNueva][posYNueva]);
-						break;
+		int maxDirNueva;
+		if(this.agotado() == false) {
+			if(dirMoverAct != null) {
+				if(dirMoverAct == ORIENTATION.NORTH) {
+					//this.posY = this.posY - this.velocidad;
+					maxDirNueva = posYVieja-this.getVelocidad();
+					if(maxDirNueva <= 0) {
+						maxDirNueva = 0;
+					}
+					if(posYVieja-1 >= 0) {
+						for(posYNueva = posYVieja-1; posYNueva >= maxDirNueva; posYNueva--) {
+							if(posYNueva >= 0) {
+								this.disminuirEnergia(DISMINUCION_ENERGIA_POR_CASILLA);
+								if(mapa[posYNueva][posXNueva] != null) {
+									this.revisarPosicion(mapa[posYNueva][posXNueva]);
+									break;
+								}
+							}
+							else {
+								break;
+							}
+						}
+					}
+					if(posYNueva < posYVieja-this.getVelocidad()) {
+						posYNueva = posYNueva +1;
 					}
 				}
-				if(posYNueva < posYVieja-this.getVelocidad()) {
-					posYNueva = posYNueva +1;
-				}
-			}
-			else if(dirMoverAct == ORIENTATION.SOUTH) {
-				//this.posY = this.posY + this.velocidad;
-				for(posYNueva = posYVieja+1; posYNueva <= posYVieja+this.getVelocidad(); posYNueva++) {
-					this.disminuirEnergia(DISMINUCION_ENERGIA_POR_CASILLA);
-					if(mapa[posXNueva][posYNueva] != null) {
-						this.revisarPosicion(mapa[posXNueva][posYNueva]);
-						break;
+				else if(dirMoverAct == ORIENTATION.SOUTH) {
+					//this.posY = this.posY + this.velocidad;
+					maxDirNueva = posYVieja+this.getVelocidad();
+					if(maxDirNueva >= TABLERO_SIZE_1 -1) {
+						maxDirNueva = TABLERO_SIZE_1 -1;
+					}
+					if(posYVieja+1 <= TABLERO_SIZE_1) {
+						for(posYNueva = posYVieja+1; posYNueva <= maxDirNueva; posYNueva++) {
+							if(posYNueva < TABLERO_SIZE_1) {
+								this.disminuirEnergia(DISMINUCION_ENERGIA_POR_CASILLA);
+								if(mapa[posYNueva][posXNueva] != null) {
+									this.revisarPosicion(mapa[posYNueva][posXNueva]);
+									break;
+								}
+							}
+							else {
+								break;
+							}
+						}
+					}
+					if(posYNueva > posYVieja+this.getVelocidad()) {
+						posYNueva = posYNueva -1;
 					}
 				}
-				if(posYNueva > posYVieja+this.getVelocidad()) {
-					posYNueva = posYNueva -1;
-				}
-			}
-			else if(dirMoverAct == ORIENTATION.EAST) {
-				//this.posX = this.posX + this.velocidad;
-				for(posXNueva = posXVieja+1; posXNueva <= posXVieja+this.getVelocidad(); posXNueva++) {
-					this.disminuirEnergia(DISMINUCION_ENERGIA_POR_CASILLA);
-					if(mapa[posXNueva][posYNueva] != null) {
-						this.revisarPosicion(mapa[posXNueva][posYNueva]);
-						break;
+				else if(dirMoverAct == ORIENTATION.EAST) {
+					//this.posX = this.posX + this.velocidad;
+					maxDirNueva = posXVieja+this.getVelocidad();
+					if(maxDirNueva >= TABLERO_SIZE_2 -1) {
+						maxDirNueva = TABLERO_SIZE_2 -1;
+					}
+					if(posXVieja+1 <= TABLERO_SIZE_2) {
+						for(posXNueva = posXVieja+1; posXNueva <= maxDirNueva; posXNueva++) {
+							if(posXNueva < TABLERO_SIZE_2) {
+								this.disminuirEnergia(DISMINUCION_ENERGIA_POR_CASILLA);
+								if(mapa[posYNueva][posXNueva] != null) {
+									this.revisarPosicion(mapa[posYNueva][posXNueva]);
+									break;
+								}
+							}
+							else {
+								break;
+							}
+						}
+					}
+					if(posXNueva > posXVieja+this.getVelocidad()) {
+						posXNueva = posXNueva -1;
 					}
 				}
-				if(posXNueva > posXVieja+this.getVelocidad()) {
-					posXNueva = posXNueva -1;
-				}
-			}
-			else if(dirMoverAct == ORIENTATION.WEST){
-				//this.posX = this.posX - this.velocidad;
-				for(posXNueva = posXVieja-1; posXNueva >= posXVieja-this.getVelocidad(); posXNueva--) {
-					this.disminuirEnergia(DISMINUCION_ENERGIA_POR_CASILLA);
-					if(mapa[posXNueva][posYNueva] != null) {
-						this.revisarPosicion(mapa[posXNueva][posYNueva]);
-						break;
+				else if(dirMoverAct == ORIENTATION.WEST){
+					//this.posX = this.posX - this.velocidad;
+					maxDirNueva = posXVieja-this.getVelocidad();
+					if(maxDirNueva <= 0) {
+						maxDirNueva = 0;
+					}
+					if(posXVieja-1 >= 0) {
+						for(posXNueva = posXVieja-1; posXNueva >= maxDirNueva; posXNueva--) {
+							if(posXNueva >= 0) {
+								this.disminuirEnergia(DISMINUCION_ENERGIA_POR_CASILLA);
+								if(mapa[posYNueva][posXNueva] != null) {
+									this.revisarPosicion(mapa[posYNueva][posXNueva]);
+									break;
+								}
+							}
+							else {
+								break;
+							}
+						}
+					}
+					if(posXNueva < posXVieja-this.getVelocidad()) {
+						posXNueva = posXNueva +1;
 					}
 				}
-				if(posXNueva < posXVieja-this.getVelocidad()) {
-					posXNueva = posXNueva +1;
-				}
+				
+				this.setPosicion(posXNueva, posYNueva);
+				//int posXNueva = this.posX;
+				//int posYNueva = this.posY;
+				mapa[posYVieja][posXVieja] = null;
+				mapa[posYNueva][posXNueva] = this;
 			}
-			
-			this.setPosicion(posXNueva, posYNueva);
-			//int posXNueva = this.posX;
-			//int posYNueva = this.posY;
-			mapa[posXVieja][posYVieja] = null;
-			mapa[posXNueva][posYNueva] = this;
 		}
-		
 	}
 	
 }
