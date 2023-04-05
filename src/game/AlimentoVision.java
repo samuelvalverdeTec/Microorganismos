@@ -1,5 +1,11 @@
 package game;
 
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+import javax.swing.JButton;
+
 public class AlimentoVision extends Alimento {
 
 	public AlimentoVision() {
@@ -38,6 +44,26 @@ public class AlimentoVision extends Alimento {
 	}
 	public boolean esAlimentoVision() {
 		return true;
+	}
+
+	@Override
+	public void refrescar(JButton casilla) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void setImg() {
+		
+		this.ruta = "AlimentoVision.png";
+		
+		try {
+			
+			this.img = ImageIO.read(new File(rutaImagenes + this.ruta));
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 	}
 	
 }

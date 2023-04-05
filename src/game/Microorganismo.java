@@ -1,11 +1,19 @@
 package game;
 
+import java.awt.image.BufferedImage;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+
 public class Microorganismo implements Constants, Mapeable {
 	
 	public int numMicro;
-
+	
 	private boolean isAlive = true;
 	private ORIENTATION dirMover = null;
+	
+	public BufferedImage img = null;
+	public String ruta;
 	
 	private int energia;
 	private int vision;
@@ -354,4 +362,11 @@ public class Microorganismo implements Constants, Mapeable {
 		}
 	}
 	
+	@Override
+	public void refrescar(JButton casilla) {
+		
+		casilla.setIcon(new ImageIcon(this.img));
+		
+	}
+
 }

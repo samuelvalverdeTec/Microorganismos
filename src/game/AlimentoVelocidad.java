@@ -1,5 +1,10 @@
 package game;
 
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+
 public class AlimentoVelocidad extends Alimento {
 
 	public AlimentoVelocidad() {
@@ -38,6 +43,21 @@ public class AlimentoVelocidad extends Alimento {
 	}
 	public boolean esAlimentoVision() {
 		return false;
+	}
+
+	@Override
+	public void setImg() {
+		
+		this.ruta = "AlimentoVelocidad.png";
+		
+		try {
+			
+			this.img = ImageIO.read(new File(rutaImagenes + this.ruta));
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 	}
 	
 }

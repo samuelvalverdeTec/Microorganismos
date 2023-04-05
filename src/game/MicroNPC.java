@@ -1,6 +1,10 @@
 package game;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+
+import javax.imageio.ImageIO;
 
 public abstract class MicroNPC extends Microorganismo {
 
@@ -18,6 +22,7 @@ public abstract class MicroNPC extends Microorganismo {
 		this.setVision(pVision);
 		this.setVelocidad(pVelocidad);
 		this.setEdad(pEdad);
+		this.setImg();			// no hay ruta definida
 		
 		this.setPosicion(0,0);
 		
@@ -110,7 +115,6 @@ public abstract class MicroNPC extends Microorganismo {
 		for(int j = 0; j < 3; j++) {
 			if(mejorAlimentoEncontrado == null) {
 				for(int i = 0; i < alimentosEncontrados.size(); i++) {
-					boolean alimentoAlcanzable = false;
 					alimentoEncontrado = alimentosEncontrados.get(i);
 					PosXAlimentoEncontrado = alimentoEncontrado.getX();
 					PosYAlimentoEncontrado = alimentoEncontrado.getY();
@@ -180,7 +184,6 @@ public abstract class MicroNPC extends Microorganismo {
 		for(int j = 0; j < 3; j++) {
 			if(mejorAlimentoEncontrado == null) {
 				for(int i = 0; i < alimentosEncontrados.size(); i++) {
-					boolean alimentoAlcanzable = false;
 					alimentoEncontrado = alimentosEncontrados.get(i);
 					PosXAlimentoEncontrado = alimentoEncontrado.getX();
 					PosYAlimentoEncontrado = alimentoEncontrado.getY();
@@ -390,5 +393,25 @@ public abstract class MicroNPC extends Microorganismo {
 		mapa[posXNueva][posYNueva] = this;
 		
 	}*/
+	
+	public void setImg() {
+		
+		if(this.esNPCVision()) {
+			this.ruta = "MicroNPCVision";
+	
+		} else {
+			this.ruta = "MicroNPCVelocidad";
+	
+		}
+		
+		try {
+			
+			this.img = ImageIO.read(new File(rutaImagenes + this.ruta));
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+	}
 	
 }

@@ -1,10 +1,18 @@
 package game;
 
+import java.awt.image.BufferedImage;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+
 public abstract class Alimento implements Constants, Mapeable{
 
 	private int tamanho;
 	private int atributo;
 	private boolean consumido = false;
+	
+	public BufferedImage img = null;
+	public String ruta;
 	
 	private int posX;
 	private int posY;
@@ -13,9 +21,18 @@ public abstract class Alimento implements Constants, Mapeable{
 		
 		this.tamanho = definirTamanho();
 		this.atributo = definirAtributo(tamanho);
+		this.setImg();
 		
 	}
 	
+	public abstract void setImg();
+	
+	public void refrescar(JButton casilla) {
+		
+		casilla.setIcon(new ImageIcon(this.img));
+		
+	}
+
 	public void setPosicion(int pPosX, int pPosY) {
 		this.posX = pPosX;
 		this.posY = pPosY;
