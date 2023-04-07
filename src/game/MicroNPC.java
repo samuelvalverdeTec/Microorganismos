@@ -397,10 +397,11 @@ public abstract class MicroNPC extends Microorganismo {
 	public void setImg() {
 		
 		if(this.esNPCVision()) {
-			this.ruta = "MicroNPCVision";
+			this.ruta = "MicroNPCVision.png";
 	
-		} else {
-			this.ruta = "MicroNPCVelocidad";
+		} 
+		else {
+			this.ruta = "MicroNPCVelocidad.png";
 	
 		}
 		
@@ -408,7 +409,8 @@ public abstract class MicroNPC extends Microorganismo {
 			
 			this.img = ImageIO.read(new File(rutaImagenes + this.ruta));
 
-		} catch (IOException e) {
+		} 
+		catch (IOException e) {
 			e.printStackTrace();
 		}
 		

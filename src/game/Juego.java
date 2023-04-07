@@ -171,13 +171,35 @@ public class Juego implements Constants, KeyListener {
 					newMicroorganismoNPC.mostrarInfoMicroorganismo();
 					
 				}
+				
+				
+				for(int j = 1; j<aliList.size(); j++) {
+					Alimento alimentoAct = aliList.get(j);
+					Alimento newAlimento = null;
+					if(alimentoAct.getIsConsumido()) {
+						if(alimentoAct.esAlimentoEnergia()) {
+							newAlimento = new AlimentoEnergia();
+						}
+						else if (alimentoAct.esAlimentoVelocidad()) {
+							newAlimento = new AlimentoVelocidad();
+						}
+						else if (alimentoAct.esAlimentoVision()) {
+							newAlimento = new AlimentoVision();
+						}
+						encontrarPosRandomValida(newAlimento);
+						aliList.remove(j);
+						aliList.add(newAlimento);
+					}
+				}
+				
+				
 				gui.refrescar(mapa);
 			
 				try {
 					//for(int i = 0; i<microList.size(); i++) {
 					//	interfaz.mostrarImagen((MyRobot) ListaRobots.get(i));
 					//}
-					Thread.sleep(10000);
+					Thread.sleep(3000);
 				}
 				catch (Exception ex) {
 					ex.printStackTrace();
@@ -249,30 +271,22 @@ public class Juego implements Constants, KeyListener {
 			int key = e.getKeyCode();
 		    if (key == KeyEvent.VK_LEFT) {
 		    	if(MyMicroorganismo.getIsAlive()) {
-			    	if(MyMicroorganismo.getEnergia() > 0) {
-			    		MyMicroorganismo.setOrientation(ORIENTATION.WEST);
-			    	}
+			    	MyMicroorganismo.setOrientation(ORIENTATION.WEST);
 		    	}
 		    }
 		    else if (key == KeyEvent.VK_RIGHT) {
 		    	if(MyMicroorganismo.getIsAlive()) {
-		    		if(MyMicroorganismo.getEnergia() > 0) {
-		    			MyMicroorganismo.setOrientation(ORIENTATION.EAST);
-			    	}
+		    		MyMicroorganismo.setOrientation(ORIENTATION.EAST);
 		    	}
 		    }
 		    else if (key == KeyEvent.VK_UP) {
 		    	if(MyMicroorganismo.getIsAlive()) {
-		    		if(MyMicroorganismo.getEnergia() > 0) {
-		    			MyMicroorganismo.setOrientation(ORIENTATION.NORTH);
-			    	}
+		    		MyMicroorganismo.setOrientation(ORIENTATION.NORTH);
 		    	}
 		    }
 		    else if (key == KeyEvent.VK_DOWN) {
 		    	if(MyMicroorganismo.getIsAlive()) {
-		    		if(MyMicroorganismo.getEnergia() > 0) {
-		    			MyMicroorganismo.setOrientation(ORIENTATION.SOUTH);
-			    	}
+		    		MyMicroorganismo.setOrientation(ORIENTATION.SOUTH);
 		    	}    	
 		    }
 		}

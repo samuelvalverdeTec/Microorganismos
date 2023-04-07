@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -60,7 +61,12 @@ public class Interfaz implements Constants {
 		for(int f = 0; f < TABLERO_SIZE_1; f++){
 	        for(int c = 0; c < TABLERO_SIZE_2; c++){
 	        	JButton casilla = gui[f][c];
-	        	mapa[f][c].refrescar(casilla);
+	        	if(mapa[f][c] != null) {
+	        		mapa[f][c].refrescar(casilla);
+	        	}
+	        	else {
+	        		casilla.setIcon(new ImageIcon(rutaImagenes + "fondo.png"));
+	        	}
 	        }
 	    }
 		

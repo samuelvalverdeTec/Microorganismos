@@ -276,7 +276,7 @@ public class Microorganismo implements Constants, Mapeable {
 							}
 						}
 					}
-					if(posYNueva < posYVieja-this.getVelocidad()) {
+					if(posYNueva < maxDirNueva) {
 						posYNueva = posYNueva +1;
 					}
 				}
@@ -286,7 +286,7 @@ public class Microorganismo implements Constants, Mapeable {
 					if(maxDirNueva >= TABLERO_SIZE_1 -1) {
 						maxDirNueva = TABLERO_SIZE_1 -1;
 					}
-					if(posYVieja+1 <= TABLERO_SIZE_1) {
+					if(posYVieja+1 <= TABLERO_SIZE_1 -1) {
 						for(posYNueva = posYVieja+1; posYNueva <= maxDirNueva; posYNueva++) {
 							if(posYNueva < TABLERO_SIZE_1) {
 								this.disminuirEnergia(DISMINUCION_ENERGIA_POR_CASILLA);
@@ -300,7 +300,7 @@ public class Microorganismo implements Constants, Mapeable {
 							}
 						}
 					}
-					if(posYNueva > posYVieja+this.getVelocidad()) {
+					if(posYNueva > maxDirNueva) {
 						posYNueva = posYNueva -1;
 					}
 				}
@@ -310,7 +310,7 @@ public class Microorganismo implements Constants, Mapeable {
 					if(maxDirNueva >= TABLERO_SIZE_2 -1) {
 						maxDirNueva = TABLERO_SIZE_2 -1;
 					}
-					if(posXVieja+1 <= TABLERO_SIZE_2) {
+					if(posXVieja+1 <= TABLERO_SIZE_2 -1) {
 						for(posXNueva = posXVieja+1; posXNueva <= maxDirNueva; posXNueva++) {
 							if(posXNueva < TABLERO_SIZE_2) {
 								this.disminuirEnergia(DISMINUCION_ENERGIA_POR_CASILLA);
@@ -324,7 +324,7 @@ public class Microorganismo implements Constants, Mapeable {
 							}
 						}
 					}
-					if(posXNueva > posXVieja+this.getVelocidad()) {
+					if(posXNueva > maxDirNueva) {
 						posXNueva = posXNueva -1;
 					}
 				}
@@ -348,7 +348,7 @@ public class Microorganismo implements Constants, Mapeable {
 							}
 						}
 					}
-					if(posXNueva < posXVieja-this.getVelocidad()) {
+					if(posXNueva < maxDirNueva) {
 						posXNueva = posXNueva +1;
 					}
 				}

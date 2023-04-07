@@ -30,6 +30,7 @@ public class AlimentoEnergia extends Alimento {
 		//micro.setEnergia(micro.getEnergia() + this.atributo);	
 		micro.aumentarEnergia(this.getAtributo());
 		micro.contAumentoEnergia = micro.contAumentoEnergia + this.getAtributo();
+		this.setIsConsumido(true);
 	}
 	
 	

@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
-import javax.swing.JButton;
 
 public class AlimentoVision extends Alimento {
 
@@ -32,6 +31,7 @@ public class AlimentoVision extends Alimento {
 		if(micro.getVision() < MAX_VISION) {
 			//micro.setVision(micro.getVision() + this.atributo);
 			micro.aumentarVision(this.getAtributo());
+			this.setIsConsumido(true);
 		}
 	}
 	
@@ -47,11 +47,6 @@ public class AlimentoVision extends Alimento {
 	}
 
 	@Override
-	public void refrescar(JButton casilla) {
-		// TODO Auto-generated method stub
-		
-	}
-
 	public void setImg() {
 		
 		this.ruta = "AlimentoVision.png";

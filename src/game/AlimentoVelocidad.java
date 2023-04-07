@@ -31,6 +31,7 @@ public class AlimentoVelocidad extends Alimento {
 		if(micro.getVelocidad() < MAX_VELOCIDAD) {
 			//micro.setVelocidad(micro.getVelocidad() + this.atributo);
 			micro.aumentarVelocidad(this.getAtributo());
+			this.setIsConsumido(true);
 		}
 	}
 	
