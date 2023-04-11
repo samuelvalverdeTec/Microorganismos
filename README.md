@@ -1,2 +1,3 @@
 # Microorganismos
- Proyecto1 - POO
+ 
+ Proyecto 1 - Programacion Orientada a Objetos
