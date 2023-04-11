@@ -8,7 +8,7 @@ import javax.imageio.ImageIO;
 
 public abstract class MicroNPC extends Microorganismo {
 
-	int direccion, casillas;
+	//int direccion, casillas;
 	
 	public MicroNPC() {
 		

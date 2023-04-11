@@ -130,8 +130,8 @@ public class Microorganismo implements Constants, Mapeable {
 		this.energia += (enemigo.energia)/2;
 		this.vision += (enemigo.vision)/2;
 		this.velocidad += (enemigo.velocidad)/2;
-		enemigo.isAlive = false;
-		
+		//enemigo.isAlive = false;
+		enemigo.setIsAlive(false);
 	}
 	
 
