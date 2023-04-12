@@ -14,10 +14,10 @@ public interface Constants {
 	public static final int MAX_EDAD = 100;
 	public static final int MIN_EDAD = 1;
 	
-	public static final int TABLERO_SIZE_1 = 20;
-	public static final int TABLERO_SIZE_2 = 20;
+	public static final int TABLERO_SIZE_1 = 30;
+	public static final int TABLERO_SIZE_2 = 30;
 	
-	public static final int CANTIDAD_NPCS = 2;//(TABLERO_SIZE_1*TABLERO_SIZE_2)/10;
+	public static final int CANTIDAD_NPCS = 20;//(TABLERO_SIZE_1*TABLERO_SIZE_2)/10;
 	
 	
 	public static final int EDAD_JUGADOR = 20;
@@ -27,8 +27,11 @@ public interface Constants {
 	
 	// Agregar constantes de efectos entre atributos
 	public static final int DISMINUCION_ENERGIA_POR_CASILLA = 5;
-	public static final int DISMINUCION_VISION_POR_10_EDAD = 1;
+	public static final int DISMINUCION_VISION_POR_EDAD = 1;
 	public static final int AUMENTO_EDAD_POR_TURNO = 1;
-	public static final int DISMINUCION_VELOCIDAD_POR_30_ENERGIA = 1;
+	public static final int DISMINUCION_VELOCIDAD_POR_ENERGIA = 1;
+	
+	public static final int MAX_EDAD_DISMINUCION = 10;
+	public static final int MAX_ENERGIA_DISMINUCION = 30;
 	
 }

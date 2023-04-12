@@ -196,9 +196,6 @@ public class Juego implements Constants, KeyListener {
 				gui.refrescar(mapa);
 			
 				try {
-					//for(int i = 0; i<microList.size(); i++) {
-					//	interfaz.mostrarImagen((MyRobot) ListaRobots.get(i));
-					//}
 					Thread.sleep(3000);
 				}
 				catch (Exception ex) {

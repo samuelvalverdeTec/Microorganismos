@@ -110,12 +110,22 @@ public class Microorganismo implements Constants, Mapeable {
 	}
 	
 	public void revisarAtributos() {
-		if(this.contAumentoEdad >= 10) {
-			this.disminuirVision(DISMINUCION_VISION_POR_10_EDAD);
+		if(this.contAumentoEdad >= MAX_EDAD_DISMINUCION) {
+			if(this.getVision() >= MIN_VISION + DISMINUCION_VISION_POR_EDAD) {
+				this.disminuirVision(DISMINUCION_VISION_POR_EDAD);
+			}
+			else {
+				this.setVision(MIN_VISION);
+			}
 			this.contAumentoEdad = 0;
 		}
-		if(this.contAumentoEnergia >= 30) {
-			this.disminuirVelocidad(DISMINUCION_VELOCIDAD_POR_30_ENERGIA);
+		if(this.contAumentoEnergia >= MAX_ENERGIA_DISMINUCION) {
+			if(this.getVelocidad() >= MIN_VELOCIDAD + DISMINUCION_VELOCIDAD_POR_ENERGIA) {
+				this.disminuirVelocidad(DISMINUCION_VELOCIDAD_POR_ENERGIA);
+			}
+			else {
+				this.setVelocidad(MIN_VELOCIDAD);
+			}
 			this.contAumentoEnergia = 0;
 		}
 	}
